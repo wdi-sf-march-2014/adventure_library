@@ -19,8 +19,8 @@ development:
   encoding: unicode
   database: adventure_library_development
   pool: 5
-  username: adventure_library
-  password:
+  host: localhost
+  port: 5432
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -48,13 +48,13 @@ test:
   encoding: unicode
   database: adventure_library_test
   pool: 5
-  username: adventure_library
-  password:
+  host: localhost
+  port: 5432
 
 production:
   adapter: postgresql
   encoding: unicode
   database: adventure_library_production
   pool: 5
-  username: adventure_library
-  password:
+  host: localhost
+  port: 5432
