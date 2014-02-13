@@ -45,9 +45,9 @@ BONUS: After a library has been added to the server, use Sidetiq to retrieve upd
 
 We can use Ruby's String#gsub functionality to substitute one substring for another throughout the string.  We use a regular expression to detect the pattern of the link in double brackets, then in the passed block, return the HTML link (anchor tag) which we want to replace it with.
 
-text.gsub(/[[(.+)|(\w+)]]/) do |match|
-  link_to(match[0], page_path(match[1]))
-end
+We've provided a method `linkify_page` in PagesHelper which takes a page and returns the text with the double bracket links replaced with anchor tags.  It assumes you have not changed the routes, so a page should be accessible at:
+
+`/adventures/:adventure_id/pages/:page_id`
 
 ## The schema
 
