@@ -39,6 +39,9 @@ A JSON client can GET '/adventures' to get a list of adventures created on the l
 
 When a user submits a new library URL, "alibrary.com", this should start the library scraping process.  Your library will save that server ("alibrary.com") to the database, then set off jobs to GET all the adventures from that library ("alibrary.com/adventures.json") and GET all the libraries ("alibrary.com/libraries.json") which that library knows about.
 
+In the scraping process, if other servers are returning "id" fields from their local database, do not use their ids to save data to your database.  They might conflict with the ids of data in your database.
+
+
 BONUS: After a library has been added to the server, use Sidetiq to retrieve updated adventures from that server on a regular basis.  Overwrite the correct adventure in your database using the GUID.
 
 ## Displaying the text of a Page
