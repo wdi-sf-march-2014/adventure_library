@@ -42,7 +42,7 @@ When a user submits a new library URL, "alibrary.com", this should start the lib
 In the scraping process, if other servers are returning "id" fields from their local database, do not use their ids to save data to your database.  They might conflict with the ids of data in your database.
 
 
-BONUS: After a library has been added to the server, use Heroku Scheduler or another scheduling system like Sidetiq to retrieve updated adventures from that server on a regular basis.  Overwrite the correct adventure in your database using the GUID.
+BONUS: After a library has been added to the server, use Sidetiq to retrieve updated adventures from that server on a regular basis.  Overwrite the correct adventure in your database using the GUID.
 
 ## Displaying the text of a Page
 
