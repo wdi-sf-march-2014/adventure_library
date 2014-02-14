@@ -53,7 +53,7 @@ We've provided a method `linkify_page` in PagesHelper which takes a page and ret
 
 Adventure:
   *  has many Pages
-  *  belongs to a Library
+  *  belongs to a Library.  If library_id is nil, the adventure is local.
   *  has a title (string)
   *  has an author (string)
   *  has timestamps
