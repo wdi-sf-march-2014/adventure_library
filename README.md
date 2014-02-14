@@ -19,7 +19,7 @@ Each of you will build a website which allows a user to view text adventures, cl
 
 A user is able to go to a form to build a NEW text adventure.  Submitting this form will CREATE an adventure.  When an adventure is created, it will be automatically assigned a guid, a Global Unique identifier, using SecureRandom. (SecureRandom.urlsafe_base64(10))
 
-A user can EDIT and UPDATE an adventure by changing the title, deleting pages, or adding pages.
+A user can EDIT and UPDATE an adventure which was created on the local server by changing the title, deleting pages, or adding pages.
 
 A user can view an INDEX of adventures and click through to a specific adventure.
 
@@ -41,7 +41,9 @@ When a user submits a new library URL, "alibrary.com", this should start the lib
 
 For each library the scraper got from libraries.json, check if you have scraped that library before.  If you have, leave it be.  If you have not seen it before, scrape that library as well.
 
-In the scraping process, if other servers are returning "id" fields from their local database, do not use their ids to save data to your database.  They might conflict with the ids of data in your database.
+If your library tries to scrape itself, it will retrieve a list of adventures and libraries which all exist on the local database.  The libraries will be safely ignored, since you have seen them all before.  To make sure the adventures are not modified, do not update an adventure unless the updated_at field of the retrieved JSON is greater than the updated_at field of the local adventure with the same GUID.  In this way self-scraping will happen, but will cause no changes.  This is simpler than preventing self-scraping from happening.
+
+In the scraping process, if other servers are returning "id" fields from their local database, do not use their ids to save data to your database.  Save just the fields you want.  They might conflict with the ids of data in your database.  In your JSON api, it would be considerate to not include the "id" field in your responses. 
 
 BONUS: After a library has been added to the server, use Sidetiq to retrieve updated adventures from that server on a regular basis.  Overwrite the correct adventure in your database using the GUID.
 
