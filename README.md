@@ -39,8 +39,9 @@ A JSON client can GET '/adventures' to get a list of adventures created on the l
 
 When a user submits a new library URL, "alibrary.com", this should start the library scraping process.  Your library will save that server ("alibrary.com") to the database, then set off jobs to GET all the adventures from that library ("alibrary.com/adventures.json") and GET all the libraries ("alibrary.com/libraries.json") which that library knows about.
 
-In the scraping process, if other servers are returning "id" fields from their local database, do not use their ids to save data to your database.  They might conflict with the ids of data in your database.
+For each library the scraper got from libraries.json, check if you have scraped that library before.  If you have, leave it be.  If you have not seen it before, scrape that library as well.
 
+In the scraping process, if other servers are returning "id" fields from their local database, do not use their ids to save data to your database.  They might conflict with the ids of data in your database.
 
 BONUS: After a library has been added to the server, use Sidetiq to retrieve updated adventures from that server on a regular basis.  Overwrite the correct adventure in your database using the GUID.
 
@@ -71,5 +72,14 @@ Library:
   * has many Adventures
   * has a URL
 
+## Possible order of work:
+
+* Write the migrations and models.  I suggest you at least test the guid setting for adventures.
+* Let a user see a list of adventures and get the JSON spec for a list of adventures passing
+* Let a user click through an adventure (starting with the page whose name is "start").  You'll use the helper method linkify_page for this.  Give it a Page object, and it will give you the text of the page, with double bracket style links ([[Go to the end|endpage]])turned into <a> tags.
+* Get the scraper working from rails console.  Make a method you can call from rails console which will set off the scraping.  I.E. library.scrape will go to that library's url and scrape the adventures and known libraries.
+* Make a sidekiq worker which calls your scraping function.
+* Let a user submit a url to scrape, which will set the worker going.
+* Build a story creation and editing interface.
 
 
