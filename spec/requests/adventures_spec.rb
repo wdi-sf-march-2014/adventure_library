@@ -21,7 +21,12 @@ describe '/adventures' do
       
       @result["adventures"].should_not == nil
       @result["adventures"].length.should == 1
-      @result["adventures"].first["title"].should == @local_adventure["title"]
+      adv = @result["adventures"].first
+      adv["title"].should == @local_adventure.title
+      adv["created_at"].should_not == nil
+      adv["updated_at"].should_not == nil
+      adv["id"].should == nil
+      adv["author"].should == @local_adventure.author
     end
 
     it 'gets back the pages of a returned adventure' do 
