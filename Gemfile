@@ -32,6 +32,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'sidekiq'
+gem 'sidetiq'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'pry'

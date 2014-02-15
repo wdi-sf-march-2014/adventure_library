@@ -45,28 +45,20 @@ describe '/adventures' do
     end
   end
 
-  # describe 'GET with HTML' do
-  #   before do
-  #     get '/adventures'
-  #   end
-  #   it 'returns all adventures'
-  #   it 'returns adventures made on another server'    
-  # end
-
-  # describe 'POST' do
-  #   it 'adds a locally made adventure'
-  # end
-end
-
-describe '/libraries' do
-  before do
-    @library = Library.create!(:url => "example.com")
-  end
-    describe 'GET with JSON' do
-      it 'returns a list of known libraries' do
-           get '/libraries.json'
-           result = JSON.parse(response.body)
-           result["libraries"].first["url"].should == @library.url
+  describe 'GET with HTML' do
+    before do
+      get '/adventures'
+    end
+    it 'returns all adventures' do 
+      [@local_adventure, @foreign_adventure].each do |a|
+        response.body.should include(a.title)
       end
     end
+    it 'returns adventures made on another server'    
+  end
+
+  describe 'POST' do
+    it 'adds a locally made adventure'
+  end
 end
+
