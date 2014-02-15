@@ -12,7 +12,6 @@ class Adventure < ActiveRecord::Base
   end
   before_create :set_guid
   def set_guid
-    puts "setting guid"
     self.guid ||= SecureRandom.urlsafe_base64(10)
   end
 end
