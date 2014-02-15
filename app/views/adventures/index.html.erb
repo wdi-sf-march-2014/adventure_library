@@ -1,9 +1,13 @@
 <h1> Welcome to Raphael's adventure library! </h1>
 
 <p>Locally made adventures:</p>
+<ul>
 
-<% render :partial => 'index_entry', :collection => @local_adventures %>
+<%= render :partial => 'index_entry', :collection => @local_adventures %>
+</ul>
 
 <p> Foreign adventures:</p>
+<ul>
 
-<% render :partial => 'index_entry', :collection => @foreign_adventures %>
+<%= render :partial => 'index_entry', :collection => @foreign_adventures %>
+</ul>
