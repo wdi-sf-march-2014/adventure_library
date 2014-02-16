@@ -6,9 +6,11 @@ describe '/adventures' do
                                         :author => "Test author")
     @local_adventure.pages.create!(:name => "start", :text => "cool story bro")
 
+    l = Library.create(:url => "example.com")
     @foreign_adventure = Adventure.create!(:title => "Ceci n'est pas un test.",
                                     :author => "Foreign author",
-                                    :library_id => 4)
+                                    :library_id => l.id)
+
     @foreign_adventure.pages.create(:name => "start", :text => "Chouette histoire, mec.")
 
   end

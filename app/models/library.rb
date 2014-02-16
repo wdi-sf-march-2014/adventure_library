@@ -49,6 +49,10 @@ class Library < ActiveRecord::Base
     scrape_libraries
   end
 
+  def as_json opts={}
+    super({:except => [:id]}.merge(opts))
+  end
+
   after_create do 
     ScraperWorker.perform_async(self.id)
   end
