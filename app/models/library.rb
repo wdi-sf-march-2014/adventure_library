@@ -1,11 +1,11 @@
 class Library < ActiveRecord::Base
   has_many :adventures
 
-  def normalize_url u 
+  def self.normalize_url u 
     PostRank::URI.normalize(u).to_s
   end
   def url= u 
-    super(normalize_url(u))
+    super(self.class.normalize_url(u))
   end
 
   def adventures_url
@@ -41,8 +41,11 @@ class Library < ActiveRecord::Base
   def scrape_libraries
     l_resp = JSON.parse(Typhoeus.get(libraries_url).body)
     l_resp["libraries"].each do |l| 
-      record = Library.find_or_initialize_by(:url => normalize_url(l["url"]))
-      record.save! unless record.persisted?
+      record = Library.find_or_initialize_by(:url => self.class.normalize_url(l["url"]))
+      unless record.persisted?
+        record.save! 
+        ScraperWorker.perform_async(record.id)
+      end
     end
   end
 
@@ -53,9 +56,5 @@ class Library < ActiveRecord::Base
 
   def as_json opts={}
     super({:except => [:id]}.merge(opts))
-  end
-
-  after_create do 
-    ScraperWorker.perform_async(self.id)
   end
 end
