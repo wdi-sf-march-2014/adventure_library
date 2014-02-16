@@ -51,14 +51,9 @@ describe '/adventures' do
     end
     it 'returns all adventures' do 
       [@local_adventure, @foreign_adventure].each do |a|
-        response.body.should include(a.title)
+        response.body.should include(ERB::Util.html_escape(a.title)) 
       end
     end
-    it 'returns adventures made on another server'    
-  end
-
-  describe 'POST' do
-    it 'adds a locally made adventure'
   end
 end
 

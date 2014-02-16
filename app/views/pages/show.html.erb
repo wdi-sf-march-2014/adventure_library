@@ -1,2 +1,2 @@
 <p><%= @page.adventure.title %></p>
-<p><%= sanitize(linkify_page(@page)) %></p>
+<p><%= raw(linkify_page(@page)) %></p>
