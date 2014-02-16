@@ -29,7 +29,9 @@ group :test, :development do
   gem 'pry-rails'
 end
 
+gem 'rails_12factor', :group => :production
 gem 'unicorn'
 
 gem 'sidekiq'
 gem 'sidetiq'
+
