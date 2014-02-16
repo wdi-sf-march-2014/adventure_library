@@ -23,7 +23,8 @@ class Library < ActiveRecord::Base
   def scrape_adventures
     adventure_resp = JSON.parse(Typhoeus.get(adventures_url).body)
     adventure_resp["adventures"].each do |a|
-      record = Adventure.find_or_initialize_by(:guid => a.delete("guid"), :library_id => [nil, self.id])
+      record = Adventure.find_or_initialize_by(:guid => a.delete("guid"))
+      record.library = self unless record.persisted?
 
       a.delete("id")
       a.delete("library_id")

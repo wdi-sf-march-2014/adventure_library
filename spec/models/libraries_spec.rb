@@ -26,6 +26,7 @@ describe Library do
       l.scrape_adventures
       a = Adventure.find_by(:title => "Raphael Sofaer's Test Adventure")
       a.should_not be_nil
+      a.library.should == l
       a.pages.length.should == 2
       a.pages.find_by(:name => "start").should_not be_nil
     end
@@ -45,6 +46,7 @@ describe Library do
 
       a.reload
       a.title.should == "new title"
+      a.library.should == l
     end
     it 'does not update unless the adventure is more recent' do
             ad = adv_data["adventures"][0].deep_dup
@@ -58,7 +60,7 @@ describe Library do
 
       a.reload
       a.title.should_not == "new title"
-
+      a.library.should == l
     end
 
     describe '#scrape_libraries' do 
