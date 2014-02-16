@@ -18,11 +18,15 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+gem 'postrank-uri' # For normalizing urls.
+gem 'typhoeus'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-byebug'
   gem 'dotenv-rails'
+  gem 'pry-rails'
 end
 
 gem 'unicorn'
