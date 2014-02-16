@@ -24,6 +24,11 @@ class Library < ActiveRecord::Base
     adventure_resp = JSON.parse(Typhoeus.get(adventures_url).body)
     adventure_resp["adventures"].each do |a|
       record = adventures.find_or_initialize_by(:guid => a.delete("guid"))
+      a.delete("id")
+      a.delete("library_id")
+      a["pages"].each do |p|
+        p.delete("id")
+      end
       a["pages_attributes"] = a.delete("pages")
       if !record.persisted? || Time.parse(a["updated_at"]) > record.updated_at
         record.update_attributes(a)
@@ -37,6 +42,14 @@ class Library < ActiveRecord::Base
       record = Library.find_or_initialize_by(:url => normalize_url(l["url"]))
       record.save! unless record.persisted?
     end
+  end
 
+  def scrape
+    scrape_adventures
+    scrape_libraries
+  end
+
+  after_create do 
+    ScraperWorker.perform_async(self.id)
   end
 end

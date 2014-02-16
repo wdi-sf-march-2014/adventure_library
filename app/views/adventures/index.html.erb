@@ -6,8 +6,13 @@
 <%= render :partial => 'index_entry', :collection => @local_adventures %>
 </ul>
 
-<p> Foreign adventures:</p>
+<p> Adventures from other servers:</p>
 <ul>
 
 <%= render :partial => 'index_entry', :collection => @foreign_adventures %>
 </ul>
+
+<p> Add your library for scraping:</p>
+<%= form_for Library.new do |l| %>
+  <%= l.text_field :url, :placeholder => "example.com", :class => "urlfield" %>
+<% end %>
