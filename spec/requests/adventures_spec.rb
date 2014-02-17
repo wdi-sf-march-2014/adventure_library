@@ -3,24 +3,24 @@ require 'spec_helper'
 describe '/adventures' do
   before(:each) do 
     @local_adventure = Adventure.create!(:title => "test",
-                                        :author => "Test author")
+      :author => "Test author")
     @local_adventure.pages.create!(:name => "start", :text => "cool story bro")
 
-    l = Library.create(:url => "example.com")
+    @l = Library.create(:url => "example.com")
     @foreign_adventure = Adventure.create!(:title => "Ceci n'est pas un test.",
-                                    :author => "Foreign author",
-                                    :library_id => l.id)
+      :author => "Foreign author",
+      :library_id => @l.id)
 
     @foreign_adventure.pages.create(:name => "start", :text => "Chouette histoire, mec.")
 
   end
-	describe 'GET with JSON' do
+  describe 'GET with JSON' do
     before(:each) do 
       get '/adventures.json'
       @result = JSON.parse(response.body)
     end
     it 'returns a list of all the adventures made locally' do
-      
+
       @result["adventures"].should_not == nil
       @result["adventures"].length.should == 1
       adv = @result["adventures"].first
@@ -44,18 +44,25 @@ describe '/adventures' do
     it 'does not return adventures made on another server' do 
       @result["adventures"].detect{|a| a["title"] == @foreign_adventure.title
         }.should == nil
+      end
     end
-  end
 
-  describe 'GET with HTML' do
-    before do
-      get '/adventures'
-    end
-    it 'returns all adventures' do 
-      [@local_adventure, @foreign_adventure].each do |a|
-        response.body.should include(ERB::Util.html_escape(a.title)) 
+    describe 'GET with HTML' do
+      it 'returns all adventures' do 
+        get '/adventures'
+
+        [@local_adventure, @foreign_adventure].each do |a|
+          response.body.should include(ERB::Util.html_escape(a.title)) 
+        end
+      end
+      it 'works with a pagesless adventure' do 
+        a = Adventure.create!(:title => "Another one.",
+          :author => "Pageless",
+          :library_id => @l.id)
+        get '/adventures'
+        response.status.should == 200
+        response.body.should include(ERB::Util.html_escape(a.title))
       end
     end
   end
-end
 
