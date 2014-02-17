@@ -1,7 +1,7 @@
 <li>
-<%= index_entry.title %>
-<% if index_entry.library_id %>
+<%= bad_index_entry.title %>
+<% if bad_index_entry.library_id %>
   from:
-  <%= link_to(index_entry.library.url, index_entry.library.url) %>
+  <%= link_to(bad_index_entry.library.url, bad_index_entry.library.url) %>
 <% end %>
 </li>
