@@ -7,7 +7,7 @@ class Adventure < ActiveRecord::Base
   validates_uniqueness_of :guid, :scope => :library_id
     
   def start
-    pages.find_by(:name => "start") || pages.first
+    pages.find_by(:name => "start")
   end
 
   def as_json(opts={})

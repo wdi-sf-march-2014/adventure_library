@@ -9,9 +9,14 @@
 <p> Adventures from other servers:</p>
 <ul>
 
-<%= render :partial => 'index_entry', :collection => @foreign_adventures %>
+<%= render :partial => 'index_entry', :collection => @foreign_adventures.select{|a| a.start} %>
 </ul>
 
+<p> Adventures with no start page:</p>
+<ul>
+
+<%= render :partial => 'bad_index_entry', :collection => @foreign_adventures.select{|a| a.start.nil?} %>
+</ul>
 <p> Add your library for scraping:</p>
 <%= form_for Library.new do |l| %>
   <%= l.text_field :url, :placeholder => "example.com", :class => "urlfield" %>
