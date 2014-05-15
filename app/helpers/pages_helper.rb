@@ -1,3 +1,4 @@
+
 module PagesHelper
   def linkify_page page
     regex = /\[\[([^|]+)\|(\w+)\]\]/
