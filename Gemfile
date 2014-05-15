@@ -15,6 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -26,6 +28,7 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -39,11 +42,29 @@ group :test, :development do
   gem 'dotenv-rails'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+group :production do
+ gem 'rails_12factor'
+end
+
+gem 'pry'
+#debugging assistance
+
+gem 'sidekiq'
+#running parallel threading
+
+gem 'pry-rails'
+#pry in rails
+
+#gem 'sinatra' :require => false
 
 # Use unicorn as the app server
 gem 'unicorn'
+
+
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.1.2'
+
 
 gem 'sidekiq'
 
