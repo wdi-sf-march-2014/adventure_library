@@ -26,6 +26,8 @@ gem 'turbolinks'
 
 gem 'better_errors'
 
+gem 'typhoeus'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 

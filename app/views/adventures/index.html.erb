@@ -1,7 +1,13 @@
 <h1> Choose Yo' Adventure! </h1>
 
+ <%= link_to 'Create an Adventure', new_adventure_path %><br /><br /><br />
+
 <% @adventures.each do |adventure| %>
   <%= link_to adventure.title, adventure_path(adventure) %> by: <%= adventure.author %><br /><br />
 <% end %><br /><br />
 
- <%= link_to 'Create an Adventure', new_adventure_path %>
+<h4>Add your Library</h4>
+ <%= form_for 'add URL' do |f| %>
+  <%= f.text_field :url, placeholder: 'Enter Url' %><br />
+  <%= f.submit 'Submit' %>
+ <% end %>
