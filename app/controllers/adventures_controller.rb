@@ -1,18 +1,11 @@
 class AdventuresController < ApplicationController
   #include AdventuresHelper
-
-
   def index
 
     @adventures = Adventure.all
     respond_to do |format|
         format.html
-        format.json { render json: 
-                          { adventures:  
-                                { @adventures.to_json(:include => :pages)}
-                                  }
-                          }
-                    }
+        format.json { render :json=>@adventures.to_json(:include=>(:pages), except: :id)}
       end
   end
 
