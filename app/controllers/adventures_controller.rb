@@ -3,6 +3,7 @@ class AdventuresController < ApplicationController
 	def index
     @adventures = Adventure.all
     # @page = @adventure.pages
+    # JSON/HTML respond_to here???
   end
 
 	def new
@@ -10,8 +11,14 @@ class AdventuresController < ApplicationController
 	end
 
 	def create
-	  @adventure = Adventure.create(adventure_params)
+	  @adventure = Adventure.new(adventure_params)
+	  @adventure.GUID = SecureRandom.urlsafe_base64
+	  @adventure.save!
 	  redirect_to adventures_path
+	end
+
+	def show
+		@adventure = Adventure.find(params[:id])
 	end
 
 	def edit
@@ -32,7 +39,7 @@ class AdventuresController < ApplicationController
 
 	private
 	  def adventure_params
-	    params.require(:adventure).permit(:title, :author, :timestamps, :GUID) #pages_attributes=>[:title])
+	    params.require(:adventure).permit(:title, :author, :timestamps, :GUID, :pages_attributes=>[:name]) #pages_at
 	  end
 
 end

@@ -1,3 +1,17 @@
-<h1>Comment <%=@page.title%> on <%=@adventure.title%></h1>
+<h1><%= @adventure.title %></h1>
+<p>Written by: <%=@adventure.author%></p>
 
-<%= link_to 'Back', adventure_pages_path(@adventure) %>
+<% @pages.each do |page| %>
+  <br>
+  <%=page.text%> 
+
+	<br>
+	<br>
+  <%= link_to('next link 1') %>
+  <br>
+  <%= link_to('next link 2') %>
+<% end %>
+
+
+
+<%= sanitize linkify_page(@page) %>
