@@ -1,0 +1,10 @@
+<h1>Adventures</h1>
+
+<%= link_to "Add Adventure", new_adventure_path %>  
+
+  <li><% @adventures.each do |adventure| %>
+    <%= adventure.title %>:
+    <%= adventure.author %>
+    <%#= @library.url %>
+    <%= link_to "Edit Adventure", edit_adventure_path(adventure) %>
+  <% end %></li>
