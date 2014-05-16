@@ -1,0 +1,7 @@
+<h1>Comment on <%= @page.title %></h1>
+
+<%= form_for([@adventure, @page]) do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title%>
+    <%= f.submit :class=>"btn btn-success" %>
+<% end %>
