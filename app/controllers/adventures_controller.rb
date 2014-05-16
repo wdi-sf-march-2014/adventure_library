@@ -6,6 +6,12 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
+    @start = Adventure.find(@adventure).pages.find_by(name: "start").id
+    redirect_to adventure_page_path(@adventure, @start)
+  end
+
+  def new
+    @adventure = Adventure.new
   end
 
   def create
@@ -20,22 +26,20 @@ class AdventuresController < ApplicationController
   end
 
   def edit
-    @adventure = adventure.find(params[:id])
+    @adventure = Adventure.find(params[:id])
   end
 
   def update
-    @adventure = Adventure.new(adventure_params)
-    if @adventure.save
-      redirect_to adventure_path
+    @adventure = Adventure.find(params[:id])
+    if @adventure.update(adventure_params)
+      redirect_to adventure_path(@adventure)
     else
       flash[:errors] = @adventure.errors.full_messages
       render :edit
     end
   end
 
-  def new
-    @adventure = Adventure.new
-  end
+ 
 
   def destroy
     @adventure = Adventure.find(params[:id])
