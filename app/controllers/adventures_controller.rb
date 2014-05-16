@@ -5,7 +5,7 @@ class AdventuresController < ApplicationController
     @adventures = Adventure.all
     respond_to do |format|
         format.html
-        format.json { render :json=>@adventures.to_json(:include=>(:pages), except: :id)}
+        format.json {status: :ok, render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
       end
   end
 
