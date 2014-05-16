@@ -2,8 +2,12 @@ class AdventuresController < ApplicationController
   before_action :adventure_find_by_id, except: [:index, :new, :create]
   
   def index
-    # @library = Library.find(1)
-    @adventures = Adventure.all
+    @adventures = Adventure.all.where(library_id: !nil)
+    @my_adventures = Adventure.all.where(library_id: nil)
+    respond_to do |format|
+      format.json { render :json => { adventures: @my_adventures.as_json(only: [:guid, :title, :author, :created_at, :updated_at], include: { :pages => {only: [:name, :text]} })}, status: :ok }
+      format.html { render :index }
+    end
   end
 
   def show

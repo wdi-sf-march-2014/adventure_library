@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 name = "Joshua P"
 
+lib = Library.create!(:url => "http://adventures-with-raphael.herokuapp.com/")
+
 adv = Adventure.create!(:title => "#{name}'s Test Adventure",
 	:author => name)
 adv.pages.create!(:name => "start",

@@ -1,7 +1,8 @@
 require 'spec_helper'
 
+
 describe '/adventures' do
-  before(:each) do 
+  before(:each) do
     @local_adventure = Adventure.create!(:title => "test",
                                         :author => "Test author")
     @local_adventure.pages.create!(:name => "start", :text => "cool story bro")
