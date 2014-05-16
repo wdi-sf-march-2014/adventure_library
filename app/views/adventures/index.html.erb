@@ -5,4 +5,13 @@
 		<li> <%= link_to adventure.title, adventure_path(adventure) %> </li>
 	<% end %>
 
+</br>
+<%= link_to "Create New Adventure", new_adventure_path %>
+
 <p> Add your library for scraping:</p>
+
+<%= form_for "Add your library" do |f| %>
+	<%#= f.label :url, :autofocus => true %>
+	<%= f.text_field :url, :placeholder => "example.com" %>
+	<%= f.submit "Submit" %>
+<% end %>

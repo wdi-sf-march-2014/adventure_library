@@ -1,9 +1,15 @@
 class PagesController < ApplicationController
-
 include PagesHelper
+before_action :load_adventure
 
   def show
-    @page = Page.find(params[:id])
+    @page = @adventure.pages.find(params[:id])
   end
+
+
+  def load_adventure
+    @adventure = Adventure.find(params[:adventure_id])
+  end
+
 
 end
