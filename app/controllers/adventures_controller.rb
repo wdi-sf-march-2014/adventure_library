@@ -3,7 +3,17 @@ class AdventuresController < ApplicationController
 
 
   def index
+
     @adventures = Adventure.all
+    respond_to do |format|
+        format.html
+        format.json { render json: 
+                          { adventures:  
+                                { @adventures.to_json(:include => :pages)}
+                                  }
+                          }
+                    }
+      end
   end
 
   def new
