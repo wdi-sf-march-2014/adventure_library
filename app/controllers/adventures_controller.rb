@@ -2,9 +2,11 @@ class AdventuresController < ApplicationController
 
 	def index
     @adventures = Adventure.all
-    # binding.pry
-    # @page = @adventure.pages
-    # JSON/HTML respond_to here???
+		
+		respond_to do |format|
+      format.html
+      format.json { render :json => @adventures.to_json}
+    end
   end
 
 	def new
