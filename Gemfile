@@ -32,6 +32,10 @@ gem 'unicorn'
 
 gem 'sidekiq'
 
+gem 'typhoeus'
+
+#gem 'foreman'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -43,6 +47,8 @@ group :test, :development do
   gem 'pry-byebug'
   gem 'dotenv-rails'
   gem 'unicorn-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 

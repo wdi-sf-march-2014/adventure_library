@@ -1,0 +1,18 @@
+</br></br>
+<%= form_for ([@adventure, @page]) do |f| %>
+  <%= f.text_field :name, placeholder: "Name this page", :autofocus => true %></br></br>
+  <%= f.text_area :text, placeholder: "Describe" %></br>
+  <%= f.submit 'Create Page' %>
+<% end %>
+
+<p>Or, end your adventure</p>
+
+<%= form_for ([@adventure, @page]) do |f| %>
+  <%= f.text_area :text, placeholder: "How does it end?" %></br>
+  <%= f.hidden_field :name, value: "end" %>
+  <%= f.submit 'Create Page' %>
+<% end %>
+
+
+
+
