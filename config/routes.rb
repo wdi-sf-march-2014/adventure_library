@@ -2,10 +2,9 @@ AdventureLibrary::Application.routes.draw do
   resources :libraries, :only => [:index, :show]
   resources :adventures do
     resources :pages
-
-  root 'libaries#index'
   end
-#                Prefix Verb   URI Pattern                                        Controller#Action
+root 'adventures#index'
+#              Prefix Verb   URI Pattern                                        Controller#Action
 #           libraries GET    /libraries(.:format)                               libraries#index
 #             library GET    /libraries/:id(.:format)                           libraries#show
 #     adventure_pages GET    /adventures/:adventure_id/pages(.:format)          pages#index
@@ -24,5 +23,6 @@ AdventureLibrary::Application.routes.draw do
 #                     PATCH  /adventures/:id(.:format)                          adventures#update
 #                     PUT    /adventures/:id(.:format)                          adventures#update
 #                     DELETE /adventures/:id(.:format)                          adventures#destroy
+#                root GET    /                                                  adventures#index
 
 end

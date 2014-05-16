@@ -10,6 +10,6 @@ name = "Joshua P"
 adv = Adventure.create!(:title => "#{name}'s Test Adventure",
 	:author => name)
 adv.pages.create!(:name => "start",
-	:text => "This is a great text adventure which is beginning right now!  I can't wait to [[see the end|end]]")
+	:text => "This is a great text adventure which is beginning right now!  I can't wait to [[see the end|end]]", :adventure_id => 1)
 adv.pages.create!(:name => "end",
-	:text => "Wow that adventure was amazing!")
+	:text => "Wow that adventure was amazing!", :adventure_id => 1)

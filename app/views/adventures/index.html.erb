@@ -1,0 +1,6 @@
+<h1>All the Adventures</h1>
+<% @adventures.each do |a| %>
+  <%= link_to "'#{a.title}'", adventure_pages_path(a.id) %>
+<% end %>
+
+<br><br><br><p><%= link_to "Add a new adventure", new_adventure_path %></p>
