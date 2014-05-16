@@ -1,11 +1,12 @@
 class PagesController < ApplicationController
+  include PagesHelper
 	before_filter :load_adventure
 
 	def index
     @pages = @adventure.pages.all   
   end
 
-  def show 
+  def show
   	@page = @adventure.pages.find(params[:id])
   end	
   	

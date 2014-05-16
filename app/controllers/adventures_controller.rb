@@ -2,6 +2,7 @@ class AdventuresController < ApplicationController
 
 	def index
     @adventures = Adventure.all
+    # binding.pry
     # @page = @adventure.pages
     # JSON/HTML respond_to here???
   end
@@ -19,6 +20,7 @@ class AdventuresController < ApplicationController
 
 	def show
 		@adventure = Adventure.find(params[:id])
+  	@page = @adventure.pages.find(params[:id])
 	end
 
 	def edit
