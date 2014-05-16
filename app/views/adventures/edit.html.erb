@@ -1,0 +1,6 @@
+<h1> EDIT YOUR ADVENTURE! </h1>
+<%= form_for @adventure do |f| %>
+  <%= f.text_field :title, placeholder: "Title" %><br></br>
+  <%= f.text_field :author, placeholder: "Author" %><br></br>
+  <%= f.submit  %>
+<% end %>

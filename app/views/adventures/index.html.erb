@@ -1,0 +1,6 @@
+<h1> Welcome adventure seeker!! </h1>
+
+<% @adventures.each do |adventure| %>
+<%= link_to adventure.title, adventure_path(adventure) %>
+<%= link_to adventure.author, adventure_path(adventure) %>
+<% end %>

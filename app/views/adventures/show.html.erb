@@ -1,0 +1,5 @@
+<h1> Ze show page </h1>
+<%= @adventure.title %>
+<%= @adventure.author %>
+<%= link_to "Edit", edit_adventure_path(@adventure) %>
+<%= link_to "Delete", adventure_path(@adventure), method: 'delete' %>
