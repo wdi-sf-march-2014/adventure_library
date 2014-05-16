@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+Library.create(:url => "localhost:3000")
 
 name = "Don Drapers"
 adv = Adventure.create!(:title => "#{name}'s Test Adventure",

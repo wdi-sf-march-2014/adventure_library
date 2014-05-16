@@ -1,12 +1,12 @@
 class AdventuresController < ApplicationController
-  #include AdventuresHelper
-  def index
 
+  def index
+    @library = Library.new
     @adventures = Adventure.all
     respond_to do |format|
-        format.html
-        format.json {status: :ok, render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
-      end
+      format.html
+      format.json {render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
+    end
   end
 
   def new
@@ -45,4 +45,5 @@ class AdventuresController < ApplicationController
     def adventure_params
       params.require(:adventure).permit(:title, :author)
     end
+
 end

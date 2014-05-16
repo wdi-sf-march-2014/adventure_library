@@ -26,6 +26,14 @@
   </ul>
 
 
+<p> Add your library for scraping:</p>
+<%= form_for @library do |f| %>
+  <%= f.label :url %>
+  <%= f.text_field :url, :autofocus => true, :placeholder => "URL" %>
+  <%= f.submit %>
+<% end %>
+
+
 <%= link_to "New adventure", new_adventure_path, :class => 'btn btn-success' %>
 
 <!-- Display all of the adventures and have a link to each adventure with its pages -->

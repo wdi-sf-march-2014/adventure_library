@@ -46,9 +46,6 @@ group :production do
  gem 'rails_12factor'
 end
 
-gem 'pry'
-#debugging assistance
-
 gem 'sidekiq'
 #running parallel threading
 
@@ -57,8 +54,15 @@ gem 'pry-rails'
 
 #gem 'sinatra' :require => false
 
+gem 'typhoeus'
+#parsing json
+
 # Use unicorn as the app server
 gem 'unicorn'
+
+#Foreman can help manage multiple processes that your Rails app depends upon when running in development. 
+#It also provides an export command to move them into production.
+gem 'foreman'
 
 
 
@@ -66,7 +70,6 @@ gem 'unicorn'
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 
-gem 'sidekiq'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
