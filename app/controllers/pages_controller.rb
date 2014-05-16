@@ -16,6 +16,7 @@ class PagesController < ApplicationController
 
   def create
     @page = @adventure.pages.new(page_params)
+    @page[:user_id] = current_user.id
     if @page.save
       redirect_to adventure_pages_path(@adventure)
     else
