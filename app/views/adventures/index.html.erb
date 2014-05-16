@@ -1,0 +1,7 @@
+<h1> Choose Yo' Adventure! </h1>
+
+<% @adventures.each do |adventure| %>
+  <%= link_to adventure.title, adventure_path(adventure) %> by: <%= adventure.author %><br />
+<% end %><br /><br />
+
+ <%= link_to 'Create an Adventure', new_adventure_path %>
