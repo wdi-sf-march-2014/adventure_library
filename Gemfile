@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'typhoeus'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
@@ -46,6 +48,8 @@ end
 gem 'unicorn'
 
 gem 'sidekiq'
+
+gem 'foreman'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

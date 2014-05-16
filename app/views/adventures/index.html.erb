@@ -1,7 +1,16 @@
 <h1> All Adventures </h1>
 
 <% @adventures.each do |adventure| %>
-	<%= link_to adventure.title, adventure_pages_path(adventure.id)  %> from: some library url that I will add. <br>
+	<%= link_to adventure.title, adventure_page_path(adventure.id, 1)  %> from: some library url that I will add. <br>
 <% end %>
+<br>
+<%= @scraped %>
+<br>
 
 <%= link_to "Create New Adventure", new_adventure_path %>
+<br>
+Add Your Library:
+<%= form_for "Add Your Library" do |f| %>
+	<%= f.text_field :url, :placeholder => "example.com" %>
+	<%= f.submit  "Submit" %>
+<% end %>

@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Adventure do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should have a guid" do
+  	adventure = Adventure.create(title: "title", author: "author", guid: "1234567890")
+  	adventure.should be_valid
+  end
 end
