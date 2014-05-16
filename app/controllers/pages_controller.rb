@@ -3,11 +3,20 @@ class PagesController < ApplicationController
   before_action :load_adventure
 
   def index
-    @pages = @adventure.pages
+    @pages = @adventure.pages.all
   end
 
   def show
     load_page
+  end
+
+  def new
+    load_adventure
+    @page = Page.new
+  end
+
+  def create
+
   end
 
   def load_adventure

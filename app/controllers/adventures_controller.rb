@@ -1,7 +1,12 @@
 class AdventuresController < ApplicationController
 
+
   def index
     @adventures = Adventure.all
+    respond_to do |format|
+      format.html
+      format.json { render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
+    end
   end
 
   def new
@@ -25,12 +30,13 @@ class AdventuresController < ApplicationController
   def create
     @adventure = Adventure.new adventure_params
     # BELOW LINE MIGHT BE WRONG
-    adventure.create = SecureRandom.urlsafe_base64(10)
+    @adventure.guid = SecureRandom.urlsafe_base64(10)
     if @adventure.save
-    redirect_to root_path
+    redirect_to new_adventure_page_path(@adventure)
     else
       flash[:errors] = @adventure.errors.full_messages
       render :edit
+      redirect_to :back
     end
   end
 
