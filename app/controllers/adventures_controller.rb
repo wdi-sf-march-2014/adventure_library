@@ -19,10 +19,8 @@ class AdventuresController < ApplicationController
   end
 
   def create
-
     @adventure = Adventure.create(adventure_params)
     @adventure.guid = SecureRandom.urlsafe_base64(10)
-    binding.pry
     if @adventure.save
       redirect_to new_adventure_page_path(@adventure)
     else
@@ -40,11 +38,9 @@ class AdventuresController < ApplicationController
       redirect_to adventure_path(@adventure)
     else
       flash[:errors] = @adventure.errors.full_messages
-      render :edit
+      render :new
     end
   end
-
- 
 
   def destroy
     @adventure = Adventure.find(params[:id])

@@ -1,1 +1,14 @@
 <h2> What Happens Next?</h2>
+
+<%= form_for ([@adventure, @page]) do |f| %>
+  <%= f.text_field :name, placeholder: 'Name This Step' %><br /><br />
+  <%= f.text_area :text, placeholder: 'What Happens Next?' %><br />
+  <%= f.submit 'Keep it Going' %>
+<% end %><br />
+
+<p>OR, End your Adventure<p>
+<%= form_for ([@adventure, @page]) do |f| %>
+  <%= f.hidden_field :name, value: "end" %><br />
+  <%= f.text_area :text, placeholder: "How does it end?" %><br />  
+  <%= f.submit 'End Your Adventure' %>
+<% end %>
