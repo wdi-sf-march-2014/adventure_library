@@ -1,0 +1,33 @@
+<center><h1>Welcome to Adventures</h1></center>
+<br>
+
+<h3>Local Adventures: </h3>
+  <ul>
+    <% @adventures.each do |adventure| %>
+      <% if adventure.library_id.nil? %>
+        <a href="<%=adventure_path(adventure)%>"><li><%= adventure.title %></li></a>
+     <% end %>
+ 			<% if adventure.title %>
+   		<h6><li>Created <%= timeago(adventure.created_at) %> by <%= adventure.author %></li></h6>
+  <% else %>
+  <% end %>
+ 
+
+    <% end %>
+  </ul>
+
+<h3>Other Adventures: </h3>
+  <ul>
+    <% @adventures.each do |adventure| %>
+      <% if adventure.library_id %>
+      <a href="<%=adventure_path(adventure)%>"><li><%= adventure.title %></li></a>
+      <% end %>
+    <% end %>
+  </ul>
+
+
+<%= link_to "New adventure", new_adventure_path, :class => 'btn btn-success' %>
+
+<!-- Display all of the adventures and have a link to each adventure with its pages -->
+
+

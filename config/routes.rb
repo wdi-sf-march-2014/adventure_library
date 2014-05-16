@@ -1,7 +1,10 @@
 AdventureLibrary::Application.routes.draw do
+  root 'adventures#index'
+  resources :libraries
   resources :adventures do
     resources :pages
   end
+end
 
 
 #                Prefix Verb   URI Pattern                                        Controller#Action
@@ -75,4 +78,3 @@ AdventureLibrary::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end

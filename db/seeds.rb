@@ -6,16 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-adv = Adventure.create!(:title => "Mad Hacker",
-	:author => "Rahul")
-adv.pages.create!(:name => "start",
-	:text => "This is the story of Don Draper and his promiscuous ways")
-adv.pages.create!(:name => "end",
-	:text => "Do you want him to write a new app from scratch or use open source code? ")
 
-adv2 = Adventure.create!(:title => "Breaking Code",
-  :author => "Rahul")
-adv.pages.create!(:name => "start",
-  :text => "This is the story of the man with cancer who hacks websites to support his family")
-adv.pages.create!(:name => "end",
-  :text => "He brograms with Jesse Pinkman")
+
+name = "Don Drapers"
+adv = Adventure.create!(:title => "#{name}'s Test Adventure",
+:author => name)
+adv.pages.create!(:name => "start", :text => "This is a great text adventure which is beginning right now!  I can't wait to [[see Don Draper die!!!!|end]] or [[live!!!!|end2]]")
+adv.pages.create!(:name => "end", :text => "The show is over!")
+adv.pages.create!(:name => "end2", :text => "The show must go on!")

@@ -1,0 +1,8 @@
+<h1>Comment On <%= @post.title %></h1>
+
+<%= form_for([@post, @comment]) do |f| %>
+  <%= f.text_field :content, placeholder: "Comment" %>
+  <%= f.submit %>
+<% end %>
+
+<!-- Need to pass both the @post and @comment to the form to reflect the parent-child relationship -->
