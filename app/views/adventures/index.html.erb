@@ -1,0 +1,7 @@
+<h1> All Adventures </h1>
+
+<% @adventures.each do |adventure| %>
+	<%= link_to adventure.title, adventure_pages_path(adventure.id)  %> from: some library url that I will add. <br>
+<% end %>
+
+<%= link_to "Create New Adventure", new_adventure_path %>
