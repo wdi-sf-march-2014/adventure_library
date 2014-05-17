@@ -17,4 +17,4 @@
 myseed.rb
 
 .env
-.rdb
+*.rdb
