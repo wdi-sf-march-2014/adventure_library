@@ -21,12 +21,12 @@ describe '/adventures' do
       
       @result["adventures"].should_not == nil
       @result["adventures"].length.should == 1
-      # adv = @result["adventures"].first
-      # adv["title"].should == @local_adventure.title
-      # adv["created_at"].should_not == nil
-      # adv["updated_at"].should_not == nil
-      # adv["id"].should == nil
-      # adv["author"].should == @local_adventure.author
+      adv = @result["adventures"].first
+      adv["title"].should == @local_adventure.title
+      adv["created_at"].should_not == nil
+      adv["updated_at"].should_not == nil
+      adv["id"].should == nil
+      adv["author"].should == @local_adventure.author
     end
 
     it 'gets back the pages of a returned adventure' do 
@@ -66,7 +66,7 @@ describe '/libraries' do
       it 'returns a list of known libraries' do
            get '/libraries.json'
            result = JSON.parse(response.body)
-           result["libraries"].first["url"].should == @library.url
+           result["libraries"].first["url"].should == @library.url 
       end
     end
 end

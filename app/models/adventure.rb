@@ -5,7 +5,7 @@ class Adventure < ActiveRecord::Base
 
 	#before_save :add_guid
 
-	validates :GUID, uniqueness: true, presence: true, length: { minimum: 10 }
+	# validates :GUID, uniqueness: true, presence: true, length: { minimum: 10 }
 	validates :title, presence: true
 	validates :author, presence: true
 

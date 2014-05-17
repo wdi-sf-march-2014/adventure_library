@@ -3,8 +3,8 @@ class AdventuresController < ApplicationController
 	def index
 		@library = Library.new  	 #need to instantiate to get form to work?
 		# @page = Page.new
-    @adventures = Adventure.all
-
+    @adventures = Adventure.all.where(library_id: nil)
+    
 		respond_to do |format|
       format.html
       format.json { render :json => {:adventures => @adventures.as_json(
