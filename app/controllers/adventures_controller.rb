@@ -48,7 +48,7 @@ class AdventuresController < ApplicationController
 	end
 
 	def scrape(library)
-		# response = Typhoeus.get("#{library.URL}/libraries.json")
+		# response = Typhoeus.get("#{library.url}/libraries.json")
 		response = Typhoeus.get('adventures-with-raphael.herokuapp.com/libraries.json')
 			if response.response_code == 200 
 			result = JSON.parse(response.body)

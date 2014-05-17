@@ -17,7 +17,7 @@ class LibrariesController < ApplicationController
 	end
 
 	def scrape(library)
-		# response = Typhoeus.get("#{library.URL}/libraries.json")
+		# response = Typhoeus.get("#{library.url}/libraries.json")
 		response = Typhoeus.get('adventures-with-raphael.herokuapp.com/libraries.json')
 		result = JSON.parse(response.body)
 		result['libraries'].each do |l|   ##rails c (SE)
@@ -36,7 +36,7 @@ class LibrariesController < ApplicationController
 
 	private
 	  def library_params
-	    params.require(:library).permit(:URL) #:adventure_id, :adventures_attributes=>[:title]
+	    params.require(:library).permit(:url) #:adventure_id, :adventures_attributes=>[:title]
 	  end
 
 end

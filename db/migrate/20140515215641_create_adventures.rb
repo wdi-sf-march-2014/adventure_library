@@ -4,7 +4,7 @@ class CreateAdventures < ActiveRecord::Migration
       t.string :title
       t.string :author
       t.timestamp :timestamps
-      t.string :GUID
+      t.string :guid
 
       t.timestamps
     end
