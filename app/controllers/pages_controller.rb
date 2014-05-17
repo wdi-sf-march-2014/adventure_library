@@ -3,11 +3,11 @@ class PagesController < ApplicationController
  before_action :load_adventure
 
 	def index
-		@pages = @adventure.pages
+		@pages = @adventure.pages.all
 	end
 
 	def show
-		@pages = @adventure.page.find(params[:id])
+		@page = @adventure.pages.find(params[:id])
 	end
 
 	def new
@@ -27,14 +27,6 @@ class PagesController < ApplicationController
 			flash[:errors] = @page.errors.full_messages
 			render :new
 		end
-	end
-
-	def show
-		@start = @adventure.pages.find_by(name: "start").id
-		@page = @adventure.pages.find(@start)
-		@next = @start.to_i + 1
-
-
 	end
 
 	private

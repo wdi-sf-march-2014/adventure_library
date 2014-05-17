@@ -10,7 +10,7 @@
 <%= link_to "Create New Adventure", new_adventure_path %>
 <br>
 Add Your Library:
-<%= form_for "Add Your Library" do |f| %>
+<%= form_for Library.new do |f| %>
 	<%= f.text_field :url, :placeholder => "example.com" %>
 	<%= f.submit  "Submit" %>
 <% end %>
