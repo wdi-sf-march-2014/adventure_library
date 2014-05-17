@@ -3,7 +3,11 @@ class LibrariesController < ApplicationController
   def scrape_library(library)
    response = Typhoeus.get("#{library.url}/libraries.json")
    result = JSON.parse(response.body)
-   return result
+   result["libraries"].each do |url_link|
+    @library = Library.new
+    @library.url = url_link["url"]
+    @library.save
+   end
   end
  
    def create
@@ -11,8 +15,6 @@ class LibrariesController < ApplicationController
     scrape_library(@library)
     redirect_to(root_path)
   end
-
-
 
     private
     def library_params
