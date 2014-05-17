@@ -8,8 +8,10 @@ class LibrariesWorker
     @libraries = JSON.parse(response.body)
     
     @libraries['libraries'].each do |l|
-      Library.create(url: l['url'])
+      if Library.find_by(url: l['url']).exists?
+      else
+        Library.create(url: l['url'])
+      end
     end
-
   end
 end
