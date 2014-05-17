@@ -1,12 +1,20 @@
 class LibrariesController < ApplicationController
 
-	# def index
-	# 	@libraries = Library.all
-	# end
+	def index
+		@libraries = Library.all
+		respond_to do |format| 
+      format.html
+      format.json { render json: { libraries: @libraries } }  
+    end
+	end
 
-	# def new
-	# 	@library = Library.new
-	# end
+	def new
+		@library = Library.new
+		respond_to do |format| 
+      format.html
+      format.json { render json: { } }  
+    end
+	end
 
 	def create
 	  @library = Library.create(library_params)

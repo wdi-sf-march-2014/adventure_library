@@ -1,15 +1,17 @@
 AdventureLibrary::Application.routes.draw do
+  root 'adventures#index'
+
   resources :adventures do
     resources :pages
-  end
+	end
 
-  root 'adventures#index'
+	resources :libraries, only: :index  
+
 
 end
 
 
-
-#      Prefix Verb   URI Pattern                                        Controller#Action
+#                root GET    /                                                  adventures#index
 #     adventure_pages GET    /adventures/:adventure_id/pages(.:format)          pages#index
 #                     POST   /adventures/:adventure_id/pages(.:format)          pages#create
 #  new_adventure_page GET    /adventures/:adventure_id/pages/new(.:format)      pages#new
@@ -26,7 +28,4 @@ end
 #                     PATCH  /adventures/:id(.:format)                          adventures#update
 #                     PUT    /adventures/:id(.:format)                          adventures#update
 #                     DELETE /adventures/:id(.:format)                          adventures#destroy
-#                root GET    /                                                  adventures#index
-
-
-
+#           libraries GET    /libraries(.:format)                               libraries#index
