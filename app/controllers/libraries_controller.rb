@@ -12,21 +12,25 @@ class LibrariesController < ApplicationController
   def show
   end
 
-  def scrape_library(library)
-    response = Typhoeus.get("#{library.url}/libraries.json")
-    result = JSON.parse(response.body)
-    JSON.parse(response.body)
-    return result
+  def scrape_library(library_id)
+    library = Library.find(library_id)
+    response1 = Typhoeus.get("#{library.url}/libraries.json")
+    result = JSON.parse(response1.body)
+    binding.pry
+    result["libraries"].each do |library|
+      library = Library.create(:url => library["url"])
+      # response2 = Typhoeus.get("#{library.url}/adventures.json")
+      # result2 = JSON.parse(response2.body)
+    end
   end
-
+  
   def create
-    @library = Library.create library_params
-    if @library.save
-      scrape_library(@library)
+    library = Library.new library_params
+    if library.save
+      scrape_library(library.id)
       redirect_to root_path
     else
       flash[:errors] = @adventure.errors.full_messages
-      render :edit
       redirect_to :back
     end
   end
