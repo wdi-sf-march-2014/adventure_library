@@ -1,5 +1,10 @@
 <h1> Ze show page </h1>
-<%= @adventure.title %>
-<%= @adventure.author %>
+<p> Title:  <%= @adventure.title %> </p>
+<p> Author: <%= @adventure.author %> </p>
+<% @adventure.pages.each do |page| %>
+   <%= page.name %>
+   <%= page.text %>
+<% end %>
+
 <%= link_to "Edit", edit_adventure_path(@adventure) %>
 <%= link_to "Delete", adventure_path(@adventure), method: 'delete' %>

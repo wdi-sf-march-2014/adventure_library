@@ -1,6 +1,15 @@
 <h1> Welcome adventure seeker!! </h1>
 
 <% @adventures.each do |adventure| %>
-<%= link_to adventure.title, adventure_path(adventure) %>
-<%= link_to adventure.author, adventure_path(adventure) %>
+<p> Title: <%= link_to adventure.title, adventure_path(adventure) %> </p>
+<p> Author:<%= link_to adventure.author, adventure_path(adventure) %> </p>
+
+<br>
+<% end %>
+
+<%= button_to "Create new adventure", { controller: :adventures, action: :new }, :method => :get, :class => "btn btn-default btn-sm btn-success" %><br></br>
+
+<%= form_for @library do |f| %>
+<%= f.text_field :url, placeholder: "url" %>
+<%= f.submit %>
 <% end %>
