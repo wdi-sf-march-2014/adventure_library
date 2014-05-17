@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516190635) do
+ActiveRecord::Schema.define(version: 20140517184319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140516190635) do
     t.string   "GUID"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "library_id"
   end
 
   create_table "libraries", force: true do |t|

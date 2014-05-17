@@ -17,7 +17,11 @@ class LibrariesController < ApplicationController
 	def scrape(library)
 		response = Typhoeus.get("#{library.URL}/libraries.json")
 		result = JSON.parse(response.body)
-		return result
+		result['libraries'].each do |l|   ##rails c (SE)
+			@library = Library.new
+			@library.url = l['url']
+			@library.save
+		end
 	end
 
 	private

@@ -1,7 +1,7 @@
 class AdventuresController < ApplicationController
 
 	def index
-		@library = Library.new   #need to instantiate to get form helper to work?
+		@library = Library.new   #need to instantiate to get form to work
 		# @page = Page.new
     @adventures = Adventure.all
 		
