@@ -12,3 +12,8 @@
  *= require_self
  *= require_tree .
  */
+
+h6 {
+  font-size: 12px;
+  font-style: italic;
+}

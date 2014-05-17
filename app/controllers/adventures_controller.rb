@@ -1,4 +1,5 @@
 class AdventuresController < ApplicationController
+  include PagesHelper
 
   def index
     @adventures = Adventure.all
@@ -12,7 +13,6 @@ class AdventuresController < ApplicationController
   def new
     @adventure = Adventure.new
     @page = @adventure.pages.build
-    # @library = @library.adventure.create
   end
 
   def edit
@@ -23,27 +23,35 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    # id = params[:id]
-    @adventure = Adventure.find(params[:id])
-    @page = Page.new
-    @start = Adventure.find(@adventure).pages.find_by(name: "start")
-    redirect_to adventure_page_path(@adventure)
+    @adventure = Adventure.find_by_id(params[:id])
+    @page = @adventure.pages.find_by_name("start")
   end
 
   def create
     @adventure = Adventure.new adventure_params
     @adventure.guid = SecureRandom.urlsafe_base64(10)
-    # request = Typhoeus.post("url/email.json", params: {email: params[:email], contact: @contact.email})
     if @adventure.save
-    redirect_to new_adventure_page_path(@adventure)
+    redirect_to adventure_page_path(@adventure)
     else
       flash[:errors] = @adventure.errors.full_messages
       render :edit
       redirect_to :back
     end
-    # if @library.save
-    #   redirect_to adventure_libraries_path
-    # end
+  end
+
+  def edit
+    @adventure = Adventure.find_by_id(params[:id])
+  end
+
+  def update
+    @adventure = Adventure.find_by_id(params[:id])
+    redirect_to(@adventure)
+  end
+
+  def destroy
+      @adventure = Adventure.find(params[:id])
+      @adventure.destroy
+      redirect_to root_path
   end
 
 private

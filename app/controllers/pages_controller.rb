@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
   def index
     @pages = @adventure.pages.all
+    load_adventure
   end
 
   def show
@@ -12,11 +13,15 @@ class PagesController < ApplicationController
 
   def new
     load_adventure
-    @page = Page.new
+    # @page = Page.new
+    @page = @adventure.pages.build
   end
 
   def create
-
+    load_adventure
+    # @page = Page.find_by_id(params[:id])
+    @page = @adventure.pages.new page_params
+    # redirect_to adventure_page_path(@adventure)
   end
 
   def load_adventure
@@ -28,6 +33,11 @@ class PagesController < ApplicationController
   def load_page
     @page = @adventure.pages.find(params[:id])
     redirect_to root_path if @page.blank?
+  end
+
+  private
+  def page_params
+    params.require(:page).permit(:name, :text)
   end
 
 end
