@@ -21,3 +21,5 @@ adv = Adventure.create!(:title => "#Walter Whites's Coding Adventure",
 adv.pages.create!(:name => "start", :text => "This is a great text adventure which is beginning right now!  I can't wait to [[see Heizenberg hack a hack!!!!|end]] or [[hackathon!!!!|end3]]")
 adv.pages.create!(:name => "end4", :text => "The show is over!")
 adv.pages.create!(:name => "end5", :text => "The show must go on!")
+
+adv = Adventure.create!(:title => "Rahul's Test Adventure", :author => "Rahul")
