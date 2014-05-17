@@ -1,7 +1,7 @@
 class AdventuresController < ApplicationController
 
 	def index
-		@library = Library.new  	 #need to instantiate to get form to work?
+		@library = Library.new  	 #need to instantiate to get form to work
 		# @page = Page.new
     @adventures = Adventure.all.where(library_id: nil)
     
@@ -29,8 +29,6 @@ class AdventuresController < ApplicationController
   	@page = @adventure.pages.find(params[:id])
   end
 
-	end
-
 	def edit
 	  @adventure = Adventure.find(params[:id])
 	end
@@ -47,18 +45,7 @@ class AdventuresController < ApplicationController
 	  redirect_to adventure_path
 	end
 
-	def scrape(library)
-		# response = Typhoeus.get("#{library.url}/libraries.json")
-		response = Typhoeus.get('adventures-with-raphael.herokuapp.com/libraries.json')
-			if response.response_code == 200 
-			result = JSON.parse(response.body)
-			result['libraries'].each do |l|   ##rails c (SE)
-				@library = Library.create
-				@library.url = l['url']
-				@library.save!
-		end
-	end
-
+	
 	private
 	  def adventure_params
 	    params.require(:adventure).permit(:title, :author, :timestamps, :GUID, :pages_attributes=>[:name]) #pages_at
