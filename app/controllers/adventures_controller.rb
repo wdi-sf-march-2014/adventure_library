@@ -30,19 +30,10 @@ class AdventuresController < ApplicationController
   end
 
   def destroy
-    @adventure = Adventure.find(params[:id])
-    @adventure.delete
+    @adventure = Adventure.find(params[:id]).destroy
+    # @adventure.delete
     redirect_to root_path
   end
-
-  # def get_adventure
-  # Typhoeus.get("localhost:3000", :params => {:t => "Cars", :y => "2006"})
-  # end
-
-  # def send_adventure
-  #   Typhoeus.post("localhost:3001/email.json", params: {email: params[:email]})
-  #   redirect_to email_sent_path
-  # end
 
   private
     def adventure_params

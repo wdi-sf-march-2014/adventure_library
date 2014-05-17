@@ -28,7 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
 
 gem 'sidekiq'
 
@@ -44,9 +44,8 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'pry'
-  gem 'pry-byebug'
   gem 'dotenv-rails'
-  gem 'unicorn-rails'
+  #gem 'unicorn-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
 end

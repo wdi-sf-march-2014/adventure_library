@@ -11,8 +11,7 @@ before_action :load_adventure
   end
 
   def create
-    @page = Page.create(pages_params)
-    @page.adventure_id = @adventure_id
+    @page = @adventure.pages.new(pages_params)
     if @page.save
       if @page.name == "end"
         redirect_to root_path
@@ -29,6 +28,12 @@ before_action :load_adventure
     @page = @adventure.pages.new
   end
 
+  def start
+    @adventure = Adventure.find(params[:id])
+    @start = @adventure.pages.find_by(name: "start").id
+    redirect_to new_adventure_page_path(@adventure, @start)
+  end
+
   private
     def load_adventure
       @adventure = Adventure.find(params[:adventure_id])
@@ -38,7 +43,3 @@ before_action :load_adventure
       params.require(:page).permit(:name, :text)
     end
 end
-
-
-# create
-# @adventure = Adventure.find(params[:parent_id])
