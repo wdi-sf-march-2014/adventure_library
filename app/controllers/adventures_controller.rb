@@ -7,7 +7,7 @@ class AdventuresController < ApplicationController
     
 		respond_to do |format|
       format.html
-      format.json { render :json => {:adventures => @adventures.as_json(
+      format.json { render :json => {:adventures => @adventures.as_json(only: [:title, :author, :updated_at, :guid],
       	include: {:pages => {only: [:name, :text]} })} }
       format.xml { render xml: @adventures.to_xml}
     end
