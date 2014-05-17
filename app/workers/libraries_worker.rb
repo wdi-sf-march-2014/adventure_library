@@ -12,6 +12,7 @@ class LibrariesWorker
       else
         Library.create(url: l['url'])
       end
+    AdventuresWorker.perform_async(l.id)
     end
   end
 end
