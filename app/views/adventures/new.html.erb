@@ -1,9 +1,16 @@
+<h1>Create an Adventure</h1>
+
 <%= form_for @adventure do |f| %>
-	<%= f.label :title %>
-	<%= f.text_field :title, :autofocus => true %>
-	<br>
-	<%= f.label :author %>
-	<%= f.text_field :author %>
-	<br>
+	<%= f.text_field :title, placeholder: "Adventure Title", :autofocus => true %><br>
+	<%= f.text_field :author, placeholder: "Author" %><br>
+	<%=f.fields_for :pages, @adventure.pages.build do |b| %>
+	<%#=f.fields_for :pages, @pages do |b| %>
+
+		<%= b.text_area :text, placeholder: "Start your story here" %><br>
+		<%= b.hidden_field :name, value: "start" %>
+		<% end %>
 	<%= f.submit %>
 <% end %>
+
+
+

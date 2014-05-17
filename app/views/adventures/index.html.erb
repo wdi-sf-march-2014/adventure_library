@@ -1,7 +1,7 @@
 <h1> All Adventures </h1>
 
 <% @adventures.each do |adventure| %>
-	<%= link_to adventure.title, adventure_page_path(adventure.id, 1)  %> from: some library url that I will add. <br>
+	<%= link_to adventure.title, adventure_path(adventure)%> from: some library url that I will add. <br>
 <% end %>
 <br>
 <%= @scraped %>
