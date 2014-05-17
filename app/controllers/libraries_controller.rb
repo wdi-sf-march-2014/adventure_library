@@ -16,14 +16,9 @@ class LibrariesController < ApplicationController
     end
 	end
 
-	def create
-	  @library = Library.create(library_params)
-	  scrape(@library)
-	  redirect_to adventures_path
-	end
-
 	def scrape(library)
-		response = Typhoeus.get("#{library.URL}/libraries.json")
+		# response = Typhoeus.get("#{library.URL}/libraries.json")
+		response = Typhoeus.get('adventures-with-raphael.herokuapp.com/libraries.json')
 		result = JSON.parse(response.body)
 		result['libraries'].each do |l|   ##rails c (SE)
 			@library = Library.new
@@ -31,6 +26,13 @@ class LibrariesController < ApplicationController
 			@library.save
 		end
 	end
+
+	def create
+	  @library = Library.create(library_params)
+	  scrape(@library)
+	  redirect_to adventures_path
+	end
+
 
 	private
 	  def library_params

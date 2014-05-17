@@ -1,7 +1,7 @@
 class AdventuresController < ApplicationController
 
 	def index
-		@library = Library.new   #need to instantiate to get form to work?
+		@library = Library.new  	 #need to instantiate to get form to work?
 		# @page = Page.new
     @adventures = Adventure.all
 
@@ -53,7 +53,7 @@ class AdventuresController < ApplicationController
 			if response.response_code == 200 
 			result = JSON.parse(response.body)
 			result['libraries'].each do |l|   ##rails c (SE)
-				@library = Library.new
+				@library = Library.create
 				@library.url = l['url']
 				@library.save!
 		end

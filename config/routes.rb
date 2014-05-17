@@ -5,12 +5,13 @@ AdventureLibrary::Application.routes.draw do
     resources :pages
 	end
 
-	resources :libraries, only: :index  
-
+	resources :libraries do
+    resources :adventures
+  end
 
 end
 
-
+# Prefix Verb   URI Pattern                                        Controller#Action
 #                root GET    /                                                  adventures#index
 #     adventure_pages GET    /adventures/:adventure_id/pages(.:format)          pages#index
 #                     POST   /adventures/:adventure_id/pages(.:format)          pages#create
@@ -29,3 +30,10 @@ end
 #                     PUT    /adventures/:id(.:format)                          adventures#update
 #                     DELETE /adventures/:id(.:format)                          adventures#destroy
 #           libraries GET    /libraries(.:format)                               libraries#index
+#                     POST   /libraries(.:format)                               libraries#create
+#         new_library GET    /libraries/new(.:format)                           libraries#new
+#        edit_library GET    /libraries/:id/edit(.:format)                      libraries#edit
+#             library GET    /libraries/:id(.:format)                           libraries#show
+#                     PATCH  /libraries/:id(.:format)                           libraries#update
+#                     PUT    /libraries/:id(.:format)                           libraries#update
+#                     DELETE /libraries/:id(.:format)                           libraries#destroy
