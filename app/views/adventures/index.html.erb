@@ -1,0 +1,17 @@
+<!-- #index.html.erb -->
+<h1>All your Adventures!</h1>
+<%= link_to 'Create an Adnventure', new_adventure_path %> 
+
+<% @adventures.each do |adventure| %>
+
+<%= link_to adventure.title, adventure_path(adventure) %> by: <%= adventure.author %> <br />
+<% end %>
+
+<h4>Add your Library</h4>
+
+  <%= form_for 'add URL' do |f| %>
+  <%= f.text_field :url, placeholder: 'Enter Url' %>
+
+  <%= f.submit 'Submit' %>
+
+  <% end %>

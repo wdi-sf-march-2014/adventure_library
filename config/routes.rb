@@ -2,7 +2,7 @@ AdventureLibrary::Application.routes.draw do
   resources :adventures do
     resources :pages
   end
-
+ root to: "adventures#index"
 #                Prefix Verb   URI Pattern                                        Controller#Action
 #     adventure_pages GET    /adventures/:adventure_id/pages(.:format)          pages#index
 #                     POST   /adventures/:adventure_id/pages(.:format)          pages#create
