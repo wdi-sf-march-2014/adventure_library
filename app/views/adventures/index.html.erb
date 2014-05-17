@@ -10,13 +10,23 @@
 <% end %>
 
 <p><strong> adventures from other servers </strong></p>
+
+    <% @adventures.each do |adventure| %>
+      <% if adventure.library_id %>
+      <a href="<%=adventure_path(adventure)%>"><li><%= adventure.title %></li></a>
+      <% end %>
+    <% end %>
 <!-- if...needs library_id -->
 
 <p><strong> adventures with no "start" page, aka bastards </strong></p>
 
 <h2> add a library url to scrape: </h2>
-<!-- entry form here -->
+
+<%= form_for @library do |f| %>
+	<%= f.label :URL %>
+	<%= f.text_field :URL , :placeholder => "enter url", :autofocus => true %>
+	<%= f.submit %>
+<% end %>
 
 
-
-<li><%= link_to('new local adventure', new_adventure_path) %></li>
+<li><%= link_to 'new local adventure', new_adventure_path, :class => 'btn btn-primary' %></li>

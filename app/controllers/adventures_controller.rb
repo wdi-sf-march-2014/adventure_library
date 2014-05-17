@@ -1,12 +1,15 @@
 class AdventuresController < ApplicationController
 
 	def index
+		@library = Library.new   #need to instantiate to get form helper to work?
+		# @page = Page.new
     @adventures = Adventure.all
 		
 		respond_to do |format|
       format.html
       format.json { render :json => {:adventures => @adventures.as_json(include: 
       	{:pages => {only: [:name, :text]} })} }
+      format.xml { render xml: @adventures.to_xml}
     end
   end
 

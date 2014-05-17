@@ -1,0 +1,11 @@
+<%= form_for Library.new do |f| %>
+ 
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url, id => "URL", :placeholder => "enter url", :autofocus => true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
