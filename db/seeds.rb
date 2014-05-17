@@ -22,3 +22,6 @@ adv.pages.create!(:name => "next",
   :text => "Wow this adventure is amazing! Let's go to [[the end|end]]")
 adv.pages.create!(:name => "end",
   :text => "Wow that adventure was amazing!")
+
+
+lib = Library.create(:url => "www.example.com")

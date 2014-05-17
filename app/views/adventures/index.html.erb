@@ -10,7 +10,7 @@
 
 <p> Add your library for scraping:</p>
 
-<%#= form_for @library "Add your library" do |f| %>
-	<%#= f.text_field :url, :placeholder => "example.com" %>
-	<%#= f.submit "Submit" %>
-<%# end %>
+<%= form_for Library.new do |f| %>
+	<%= f.text_field :url, :placeholder => "example.com" %>
+	<%= f.submit "Submit" %>
+<% end %>
