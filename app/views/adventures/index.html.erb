@@ -8,3 +8,11 @@
     <%#= @library.url %>
     <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %></b></li>
   <% end %>
+
+
+<!-- add new library from external site to list above -->
+
+<%= form_for @library do |l| %>
+  <%= l.text_field :url, placeholder: "http://example.com/" %>
+  <%= l.submit "Add a Library for Scraping"%>
+<% end %>
