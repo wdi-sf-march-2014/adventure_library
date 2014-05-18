@@ -1,5 +1,6 @@
 class AdventuresWorker
   include Sidekiq::Worker
+  sidekiq_options :retry => 3
 
   def perform(lib_id)
     lib = Library.find(lib_id)

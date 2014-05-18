@@ -12,9 +12,14 @@ class AdventuresController < ApplicationController
   
   def scrape
     url = params["link"]["url"]
-    LibrariesWorker.perform_async(url)
-    flash[:sucess] = "Libraries are being scraped from the URL you entered"
-    redirect_to root_path
+    if url.include?("http://") && url.include?("heroku")
+      LibrariesWorker.perform_async(url)
+      flash[:sucess] = "Libraries are being scraped from the URL you entered"
+      redirect_to root_path
+    else
+      flash[:error] = "Please enter a real url from Heroku"
+      redirect_to root_path
+    end
   end
 
   def show
@@ -30,10 +35,11 @@ class AdventuresController < ApplicationController
     if adventure.save
       adventure.pages.create(name: params["adventure"]["pages_attributes"]["0"]["name"], text: params["adventure"]["pages_attributes"]["0"]["text"])
       flash[:success] = "Adventure Created. Add more pages."
+      redirect_to new_adventure_page_path(adventure)
     else
-      render action: 'new'
+      flash[:error] = "You didn't do that correctly. Try again."
+      redirect_to root_path
     end
-    redirect_to new_adventure_page_path(adventure)
   end
 
   def edit
