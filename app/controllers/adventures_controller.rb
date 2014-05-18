@@ -5,7 +5,7 @@ def index
   @library = Library.new
   respond_to do |format|
     format.html
-    format.json { render json: @adventures}
+    format.json { render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
   end
 end
 

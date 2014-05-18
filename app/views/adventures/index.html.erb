@@ -1,15 +1,25 @@
 <h1> Welcome adventure seeker!! </h1>
 
+<h2> Local Adventures! </h2>
 <% @adventures.each do |adventure| %>
-<p> Title: <%= link_to adventure.title, adventure_path(adventure) %> </p>
-<p> Author:<%= link_to adventure.author, adventure_path(adventure) %> </p>
+  <% if adventure.library_id.nil? %>
+  <p> Title: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.title, adventure_path(adventure) %></a> </p>
+  <p> Author: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.author, adventure_path(adventure) %></a> </p>
+  <br>
+  <% end %>
+<% end %>
 
-<br>
+<h2> Adventures from the world wide web! </h2>
+<% @adventures.each do |adventure| %>
+  <% if adventure.library_id %>
+  <p> Title: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.title, adventure_path(adventure) %></a></p>
+  <p> Author: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.author, adventure_path(adventure) %></a> </p>  <br>
+  <% end %>
 <% end %>
 
 <%= button_to "Create new adventure", { controller: :adventures, action: :new }, :method => :get, :class => "btn btn-default btn-sm btn-success" %><br></br>
 
-<%= form_for @library do |f| %>
+<% form_for @library do |f| %>
 <%= f.text_field :url, placeholder: "url" %>
 <%= f.submit %>
 <% end %>

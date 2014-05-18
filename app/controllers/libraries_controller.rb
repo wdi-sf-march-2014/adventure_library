@@ -1,37 +1,31 @@
 class LibrariesController < ApplicationController
 
-def scrape_library(library)
-  response = Typhoeus.get("#{library.url}/libraries.json")
-  @result = JSON.parse(response.body)
-  return @result
-end
+  def index
+    @libraries = Library.all
+    @libraries.each do |library|
+    AdventuresWorker.perform_async(library.url)
+    end
+  end
 
-# def scrape_adventure(adventure)
-#   response = Typhoeus.get("#{library.url}")
-# end
+  def new
+    @library = Library.new
+  end
 
-def index
-  @libraries = Library.all
-end
-
-def new
-  @library = Library.new
-end
-
-def create
-  @library = Library.create(library_params)
-  scrape_library(@library)
-  redirect_to libraries_path
-end
-
-def show
-  @library = Library.find(params[:id])
-end
+  def create
+    library = Library.new(library_params)
+    LibrariesWorker.perform_async(library.url)
+    if library.save
+      redirect_to libraries_path
+    else
+      flash[:errors] = @adventure.errors.full_messages
+      render :new
+    end
+  end
 
 private
-def library_params
-  params.require(:library).permit(:url)
-end
+  def library_params
+    params.require(:library).permit(:url)
+  end
 
 end
 

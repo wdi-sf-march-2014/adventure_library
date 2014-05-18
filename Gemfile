@@ -49,7 +49,7 @@ gem 'sidekiq'
 
 gem 'unicorn'
 
-gem 'foreman'
+# gem 'foreman'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
