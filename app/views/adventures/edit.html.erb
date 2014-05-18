@@ -1,0 +1,17 @@
+<h1> Edit Adventure </h1>
+
+<%= form_for @adventure do |f| %>
+  <%= f.text_field :title, placeholder: 'adventure title' %><br>
+  <%= f.text_field :author, placeholder: 'your name' %><br>
+
+  Add all story lines. You'll be able to set the path on the next page.<br>
+  <%= f.fields_for :pages, @pages do |b| %>
+  	<%= b.text_field :name, placeholder: 'next page title' %>
+  	<%= b.text_area :text, placeholder: 'next story line' %><br>
+  <% end %>
+
+  <%= f.submit  class: "btn btn-primary" %>
+<% end %>
+
+
+<!-- figure out how to add path options!! [[link text|linked_to_page_name]] -->

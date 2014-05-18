@@ -1,0 +1,16 @@
+<h1>All Adventures</h1>
+
+<%= link_to('add a new adventure', new_adventure_path) %>
+
+<h3>on this server</h3>
+<% @adventures.each do |adv| %>
+  	<%= link_to(adv.title, adventure_path(adv.id)) %>
+  	by <%= adv.author %>
+    <%= link_to('click to edit', edit_adventure_path(adv.id)) %>
+<% end %>
+
+<h3>from other servers</h3>
+<% @other_adventures.each do |adv| %>
+	<%= link_to(adv.title, adventure_path(adv.id)) %>
+	by <%= adv.author %>
+<% end %>
