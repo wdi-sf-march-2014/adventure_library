@@ -6,8 +6,9 @@
     <% @adventures.each do |adventure| %>
       <% if adventure.library_id.nil? %>
         <a href="<%=adventure_path(adventure)%>"><li><%= adventure.title %></li></a>
-   		<h6><li>Created <%= timeago(adventure.created_at) %> by <%= adventure.author %></li></h6>
-      <% end %>
+   		<li>Created <%= timeago(adventure.created_at) %> by <%= adventure.author %></li></h6>
+  <% else %>
+  <% end %>
  
 
     <% end %>
@@ -17,7 +18,7 @@
   <ul>
     <% @adventures.each do |adventure| %>
       <% if adventure.library_id %>
-      <a href="<%=adventure_path(adventure)%>"><li><%= adventure.title %></li></a>
+      <li><a href="<%=adventure_path(adventure)%>"><%= adventure.title %></a></li>
       <% end %>
     <% end %>
   </ul>

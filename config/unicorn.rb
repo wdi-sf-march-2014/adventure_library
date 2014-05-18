@@ -4,7 +4,7 @@ timeout 15
 preload_app true
 
 before_fork do |server, worker|
-  @sidekiq_pid ||= spawn("bundle exec sidekiq -C config/sidekiq.yml")
+  @sidekiq_pid ||= spawn("bundle exec sidekiq -C config/sidekiq.yml") 
 
   puts "Sidekiq = #{@sidekiq_pid}"
 

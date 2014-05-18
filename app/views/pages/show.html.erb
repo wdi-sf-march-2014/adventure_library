@@ -1,4 +1,6 @@
+<h1>Name: <%= @page.name %></h1>
 
-<h1><%= "Name #{@page.name}" %></h1>
-<br>
+<!-- Sanitize method helps encode all HTML tags -->
 <%= sanitize linkify_page(@page) %>
+<%= link_to 'Edit', edit_adventure_path(@adventure) %>
+<%= link_to 'Back', adventures_path %>

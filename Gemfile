@@ -59,6 +59,7 @@ gem 'typhoeus'
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'unicorn-rails'
 
 #Foreman can help manage multiple processes that your Rails app depends upon when running in development. 
 #It also provides an export command to move them into production.

@@ -1,3 +1,5 @@
-<h1> Title <%= @adventure.title %> <h1>
+<h1>Title: <%= @adventure.title %></h1>
 
-<%= link_to 'Adventure', adventure_page_path(@adventure, @adventure.pages.find_by(name: "start")) %>
+<%= link_to 'Start Adventure', adventure_page_path(@adventure, @adventure.pages.find_by(name: "start")) %>
+<%= link_to 'Edit', edit_adventure_path(@adventure) %>
+<%= link_to 'Back', adventures_path %>

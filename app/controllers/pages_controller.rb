@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 
   def new
     @page = @adventure.pages.new #Make an empty new page for the adventure that will be passed along to the form
+    
   end
 
   def show
