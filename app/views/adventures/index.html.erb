@@ -11,7 +11,7 @@
 
 
 
-<h1>External Adventures</h1>
+<h1>All Adventures</h1>
  
   <% @adventures.each do |adventure| %>
     <li><b><%= link_to adventure.title, adventure_path(adventure.id) %> 
@@ -19,9 +19,9 @@
     <%= link_to "Delete", adventure_path(adventure.id), :method => :delete, data: { :confirm => 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></b></li>
   <% end %>
 
-<br></br>
 <!-- add new library from external site to list above -->
 <%= form_for @library do |l| %>
   <%= l.text_field :url, placeholder: "http://example.com/" %>
   <%= l.submit "Add a Library for Scraping"%>
 <% end %>
+<br></br>

@@ -18,19 +18,25 @@ class AdventuresController < ApplicationController
 
   def edit
     @adventure = Adventure.find(params[:id])
+    @pages = @adventure.pages
   end
 
   def update
+    @adventure = Adventure.find(params[:id])
+    @adventure.update_attributes(adventure_params)
+    redirect_to adventures_path
   end
 
   def show
-    @adventure = Adventure.find_by_id(params[:id])
+    @adventure = Adventure.find(params[:id])
     @page = @adventure.pages.find_by_name("start")
   end
 
   def create
-    @adventure = Adventure.new adventure_params
+    @adventure = Adventure.new(params[:adventure].permit(:title, :author, :pages_attributes=>[:name, :text]))
+    # @adventure = Adventure.new adventure_params
     @adventure.guid = SecureRandom.urlsafe_base64(10)
+    # adventure.pages.create(name: "start", text: params[:text])
     if @adventure.save
     redirect_to new_adventure_page_path(@adventure)
     else

@@ -8,12 +8,14 @@ class PagesController < ApplicationController
   end
 
   def show
-    load_page
+    @pages = @adventure.pages.find_by_name("start")
+    @adventure = Adventure.find(params[:adventure_id])
+    # @page = @adventure.pages.find(params[:name])
   end
 
   def new
     load_adventure
-    @page = @adventure.pages.build
+    @page = @adventure.pages.new
   end
 
   def create
@@ -28,6 +30,15 @@ class PagesController < ApplicationController
     redirect_to root_path if @adventure.blank?
   end
 
+  def edit
+  end
+
+  def update
+    load_adventure
+    page = Page.find_by_id(params[:id])
+    page.update(page_params)
+    redirect_to edit_adventure_path(adventure)
+  end
 
   def load_page
     @page = @adventure.pages.find(params[:id])
@@ -36,7 +47,7 @@ class PagesController < ApplicationController
 
   private
   def page_params
-    params.require(:page).permit(:name, :text, :adventure_attributes=>[:adventure_id])
+    params.require(:page).permit(:name, :text)#, :adventure_attributes=>[:adventure_id])
   end
 
 end
