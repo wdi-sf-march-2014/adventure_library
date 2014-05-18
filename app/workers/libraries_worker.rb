@@ -11,7 +11,7 @@ class LibrariesWorker
     parse["libraries"].each do |library|
       if Typhoeus.get(library["url"] + "libraries.json").response_code == 200 && Library.where(["url = ?", library["url"]]).empty? == true && library["url"].include?("heroku") == true
         lib = Library.create(library)
-        AdventuresWorker.perform_async(lib)
+        AdventuresWorker.perform_async(lib.id)     
       end
     end
   end

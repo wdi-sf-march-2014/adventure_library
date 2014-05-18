@@ -1,11 +1,11 @@
 <h1>My Adventures</h1>
 <% @my_adventures.each do |a| %>
-  <%= link_to "'#{a.title}'", adventure_pages_path(a.id) %>
+  <li><%= link_to "'#{a.title}'", adventure_pages_path(a.id) %></li>
 <% end %>
 
 <h1>All the Adventures I know</h1>
 <% @adventures.each do |ad| %>
-  <%= link_to "'#{ad.title}'", adventure_pages_path(ad.id) %>
+  <li><%= link_to "'#{ad.title}'", adventure_pages_path(ad.id) %></li>
 <% end %>
 
 <br><br><br><p><%= link_to "Add a new adventure", new_adventure_path %></p>

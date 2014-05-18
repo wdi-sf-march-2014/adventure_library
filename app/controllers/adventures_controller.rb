@@ -2,7 +2,7 @@ class AdventuresController < ApplicationController
   before_action :adventure_find_by_id, except: [:index, :new, :create]
   
   def index
-    @adventures = Adventure.all.where(library_id: !nil)
+    @adventures = Adventure.all.where.not(library_id: nil)
     @my_adventures = Adventure.all.where(library_id: nil)
     respond_to do |format|
       format.json { render :json => { adventures: @my_adventures.as_json(only: [:guid, :title, :author, :created_at, :updated_at], include: { :pages => {only: [:name, :text]} })}, status: :ok }
@@ -10,29 +10,12 @@ class AdventuresController < ApplicationController
     end
   end
 
-  
   def create
-    url = "user input"
+  end
+
+  def scrape(url)
     LibrariesWorker.perform_async(url)
   end
-#if guid doesn't exist in adventures.all
-#if start page doesn't exist
-#if end page doesn't exist
-
-  def scrape_adventures(library)
-    @libraries = Library.all
-    @libraries.each do |lib|
-      response = Typhoeus.get(lib.url + "adventures.json")
-      parse = JSON.parse(response.body)
-      parse["title"].each do |link|
-      if Typhoeus.get(link["url"] + "libraries.json").response_code == 200
-        Library.create(link)
-        binding.pry
-        scrape(link)
-      end
-    end
-  end
-end
 
   def show
     @pages = @adventure.pages
