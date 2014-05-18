@@ -3,7 +3,11 @@ class LibrariesController < ApplicationController
   def index
     @libraries = Library.all
     @libraries.each do |library|
-    AdventuresWorker.perform_async(library.id)
+     AdventuresWorker.perform_async(library.id)
+    end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @libraries }
     end
   end
 
