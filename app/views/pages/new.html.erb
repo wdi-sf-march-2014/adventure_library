@@ -1,0 +1,18 @@
+<h1> Add a new page to your adventure </h1>
+<% if params[:last_page] %>
+  <%= form_for ([@adventure, @page]) do |f| %>
+    <%= f.hidden_field :name, :value => "end" %>
+    <%= f.label :text %>
+    <%= f.text_area :text, placeholder: "Enter the content of your last page" %>
+    <%= f.submit 'End the Adventure', name: 'end' %>
+  <% end %>
+<% else %>
+  <%= form_for ([@adventure, @page]) do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Enter the name of this page" %>
+    <%= f.label :text %>
+    <%= f.text_area :text, placeholder: "Enter the content of this page" %>
+    <%= f.submit 'Add Another Page', name: 'next' %>
+    <%= f.submit 'Go To Last Page', name: 'last_page' %>
+  <% end %>
+<% end %>

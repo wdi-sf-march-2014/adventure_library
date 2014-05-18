@@ -6,8 +6,6 @@ class LibrariesController < ApplicationController
       format.html { render :index }
     end
   end
-
-  url = "http://adventures-with-raphael.herokuapp.com/"
   def scrape(url)
     #call LibrariesWorker
     #LibrariesWorker.perform_async(url)
@@ -22,7 +20,7 @@ class LibrariesController < ApplicationController
         lib = Library.create(library)
         # AdventuresWorker.perform_async(lib.id)
         adventure_response = Typhoeus.get(lib.url + "adventures.json")
-        adventure_parse = JSON.parse(adventure_response.body)
+        adventure_parse = JSON.parse(adventure_response.body) #should be a hash
         if adventure_parse.is_a?(Hash)
           adventures = adventure_parse["adventures"] #adventures is an array
           adventures.each do |adventure| #each adventure is a hash
@@ -39,6 +37,7 @@ class LibrariesController < ApplicationController
       end
     end
   end
+end
   # url = "http://adventures-with-raphael.herokuapp.com/libraries.json"
   # def scrape(url)
   #   JSON.parse(Typhoeus.get(url).body)["libraries"].each do |link|
@@ -61,15 +60,5 @@ class LibrariesController < ApplicationController
   #     end
   #   end
   # end
-  private
-  def library_params
-    params.require(:libary).permit(:url)
-  end
-
-  def adventure_params
-    params.require(:adventure).permit(:title, :author)
-  end
-end
-
 #p ary.find { |h| h['product'] == 'bcx' }['href']
 # if adventure["pages"].find { |h| h["name"] == "start" } != nil

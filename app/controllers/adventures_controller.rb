@@ -1,5 +1,5 @@
 class AdventuresController < ApplicationController
-  before_action :adventure_find_by_id, except: [:index, :new, :create]
+  before_action :load_adventure_by_id, only: [:show, :edit, :update, :destroy]
   
   def index
     @adventures = Adventure.all.where.not(library_id: nil)
@@ -9,12 +9,12 @@ class AdventuresController < ApplicationController
       format.html { render :index }
     end
   end
-
-  def create
-  end
-
-  def scrape(url)
+  
+  def scrape
+    url = params["link"]["url"]
     LibrariesWorker.perform_async(url)
+    flash[:sucess] = "Libraries are being scraped from the URL you entered"
+    redirect_to root_path
   end
 
   def show
@@ -28,9 +28,12 @@ class AdventuresController < ApplicationController
   def create
     adventure = Adventure.new adventure_params
     if adventure.save
+      adventure.pages.create(name: params["adventure"]["pages_attributes"]["0"]["name"], text: params["adventure"]["pages_attributes"]["0"]["text"])
+      flash[:success] = "Adventure Created. Add more pages."
     else
+      render action: 'new'
     end
-    redirect_to adventure_path
+    redirect_to new_adventure_page_path(adventure)
   end
 
   def edit
@@ -53,7 +56,7 @@ private
     params.require(:adventure).permit(:title, :author)
   end
 
-  def adventure_find_by_id
+  def load_adventure_by_id
     @adventure = Adventure.find(params[:id])
   end
 end

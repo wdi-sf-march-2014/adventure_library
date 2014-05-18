@@ -3,11 +3,10 @@ AdventureLibrary::Application.routes.draw do
   resources :adventures do
     resources :pages
   end
-
+post '/adventures/scrape', to: 'adventures#scrape', as: 'adventures_scrape'
 root 'adventures#index'
 #              Prefix Verb   URI Pattern                                        Controller#Action
 #           libraries GET    /libraries(.:format)                               libraries#index
-#             library GET    /libraries/:id(.:format)                           libraries#show
 #     adventure_pages GET    /adventures/:adventure_id/pages(.:format)          pages#index
 #                     POST   /adventures/:adventure_id/pages(.:format)          pages#create
 #  new_adventure_page GET    /adventures/:adventure_id/pages/new(.:format)      pages#new

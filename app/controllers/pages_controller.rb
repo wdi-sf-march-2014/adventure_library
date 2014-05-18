@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :load_adventure
-  before_action :load_page_instance_params, :only => [:show, :edit, :update, :destroy]
+  before_action :load_page_by_id, :only => [:show, :edit, :update, :destroy]
 
   def index
     @page = @adventure.pages.find_by(name: "start")
@@ -16,10 +16,24 @@ class PagesController < ApplicationController
 
   def create
     @page = @adventure.pages.new page_params
-    if @page.save
-
-    else
-      render action: 'new'
+    if params[:next]
+      if @page.save
+        redirect_to new_adventure_page_path(@adventure)
+      else
+        flash[:error] = "You can't leave any field blank"
+      end    
+    elsif params[:end]
+      if @page.save
+        redirect_to root_path
+      else
+        flash[:error] = "You can't leave any field blank"
+      end
+    elsif params[:last_page]
+      if @page.save
+        redirect_to new_adventure_page_path(@adventure)
+      else
+        flash[:error] = "You can't leave any field blank"
+      end
     end
   end
 
@@ -27,9 +41,13 @@ class PagesController < ApplicationController
   end
 
   def update
+    @page.update_attributes page_params
+    redirect_to adventure_page_path(@adventure, @page)
   end
 
   def destroy
+    @page.delete
+    redirect_to adventure_path(@adventure)
   end
 
 private
@@ -41,7 +59,7 @@ private
     @adventure = Adventure.find(params[:adventure_id])
   end
 
-  def load_page_instance_params
+  def load_page_by_id
     @page = @adventure.pages.find(params[:id])
   end
 end

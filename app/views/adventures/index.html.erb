@@ -9,3 +9,10 @@
 <% end %>
 
 <br><br><br><p><%= link_to "Add a new adventure", new_adventure_path %></p>
+
+<h5> Enter a URL to scrape here </h5>
+<%= form_for :link, :url => adventures_scrape_path, :html => {:method => :post} do |f| %>
+  <%= f.label :url %>
+  <%= f.text_field :url, placeholder: 'Start with http://' %>
+  <%= f.submit %>
+<% end %>
