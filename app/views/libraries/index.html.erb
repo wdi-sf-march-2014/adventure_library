@@ -1,5 +1,6 @@
 <h1>library index</h1>
   
 <% @libraries.each do |library| %>
-   <strong><%= library.url %></strong></br>
+   <a href="<%= library.url %>"><%= library.url %></a></br>
 <% end %>
+

@@ -4,6 +4,7 @@ class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
     @library = Library.new
+    @local_adventures = @adventures.where(library_id: nil)
     respond_to do |format|
       format.html
       format.json { render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
@@ -31,7 +32,7 @@ class AdventuresController < ApplicationController
     @adventure = Adventure.new adventure_params
     @adventure.guid = SecureRandom.urlsafe_base64(10)
     if @adventure.save
-    redirect_to adventure_page_path(@adventure)
+    redirect_to root_path
     else
       flash[:errors] = @adventure.errors.full_messages
       render :edit

@@ -19,9 +19,7 @@ class PagesController < ApplicationController
 
   def create
     load_adventure
-    # @page = Page.find_by_id(params[:id])
     @page = @adventure.pages.new page_params
-    # redirect_to adventure_page_path(@adventure)
   end
 
   def load_adventure

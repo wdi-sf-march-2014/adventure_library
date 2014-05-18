@@ -3,6 +3,9 @@ class LibrariesController < ApplicationController
 
   def index
     @libraries = Library.all
+    @libraries.each do |library|
+      AdventureWorker.perform_async(library.id)
+    end
   end
 
   def new
@@ -11,24 +14,12 @@ class LibrariesController < ApplicationController
 
   def show
   end
-
-  def scrape_library(library_id)
-    library = Library.find(library_id)
-    response1 = Typhoeus.get("#{library.url}/libraries.json")
-    result = JSON.parse(response1.body)
-    binding.pry
-    result["libraries"].each do |library|
-      library = Library.create(:url => library["url"])
-      # response2 = Typhoeus.get("#{library.url}/adventures.json")
-      # result2 = JSON.parse(response2.body)
-    end
-  end
   
   def create
     library = Library.new library_params
+    LibraryWorker.perform_async(library.url)
     if library.save
-      scrape_library(library.id)
-      redirect_to root_path
+      redirect_to libraries_path
     else
       flash[:errors] = @adventure.errors.full_messages
       redirect_to :back
@@ -45,9 +36,10 @@ class LibrariesController < ApplicationController
   #   @library = @adventure.libraries.find(params[:id])
   #   redirect_to root_path if @library.blank?
   # end
+  
 private
   def library_params
-    params.require(:library).permit(:url)
+    params.require(:library).permit(:url, :id, :guid)
   end
 
 end
