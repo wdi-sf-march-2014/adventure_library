@@ -45,6 +45,7 @@ end
 # Use unicorn as the app server
 gem 'unicorn'
 
+
 gem 'sidekiq'
 
 # Use Capistrano for deployment
