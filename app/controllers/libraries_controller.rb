@@ -7,19 +7,19 @@ class LibrariesController < ApplicationController
     end
   end
 
+  url = "http://adventures-with-raphael.herokuapp.com/"
   def scrape(url)
     #call LibrariesWorker
+    #LibrariesWorker.perform_async(url)
     if url.end_with?("json")
       response = Typhoeus.get(url)
     else
       response = Typhoeus.get(url + "/libraries.json")
     end
     parse = JSON.parse(response.body)
-    LibrariesWorker.perform_async(parse)
     parse["libraries"].each do |library|
       if Typhoeus.get(library["url"] + "libraries.json").response_code == 200 && Library.where(["url = ?", library["url"]]).empty? == true && library["url"].include?("heroku") == true
         lib = Library.create(library)
-        # This will be where AdventuresWorker is called.
         # AdventuresWorker.perform_async(lib.id)
         adventure_response = Typhoeus.get(lib.url + "adventures.json")
         adventure_parse = JSON.parse(adventure_response.body)
