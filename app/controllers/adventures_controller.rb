@@ -1,11 +1,18 @@
 class AdventuresController < ApplicationController
     def index
+    @library = Library.new
     @adventures = Adventure.all
   end
 
+  def create_library 
+    @library = Library.new(params[:url])
+  end
+
   def show
-    @adventure = params[:id]
-    @start = Adventure.find(@adventure).pages.find_by(name: "start").id
+    # binding.pry
+    @adventure = Adventure.find(params[:id])
+    @start = @adventure.pages.find_by(name: "start")
+    #binding.pry
     redirect_to adventure_page_path(@adventure, @start)
   end
 
@@ -16,12 +23,15 @@ class AdventuresController < ApplicationController
   end
 
   def create
-    @adventure = Adventure.create(params[:adventure].permit(:title, :author, :page_attributes => [:text]))
+    @adventure = Adventure.new(adventure_params)
     @adventure.GUID = SecureRandom.urlsafe_base64(10)
-    @adventure.save
+    if @adventure.save
     redirect_to new_adventure_page_path(@adventure)
-    
+    else 
+      render:edit
+    end
     #render :new
+    #, :page_attributes => [:text]
   end
 
   def edit
@@ -39,14 +49,21 @@ class AdventuresController < ApplicationController
   end
 
   def destroy
-    @adventure = Adventure.find(params[:id])
-    @adventure.destroy
+    @adventure = Adventure.find(params[:id]).destroy
+    
     redirect_to root_path
   end
 
+    # def json_rescue
+    #   JSON.parse("bad json")
+    # rescue JSON.parse errors
+    #   l.destroy
+    # end
   private
     def adventure_params
+      # binding.pry
       params.require(:adventure).permit(:title, :author) 
     end
+
 
 end

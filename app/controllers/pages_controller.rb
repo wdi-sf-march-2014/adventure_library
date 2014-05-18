@@ -6,10 +6,10 @@ class PagesController < ApplicationController
   end
 
   def create
-    @page = @adventure.pages.new(page_params)
-    page.adventure_id = @adventure.id
+    @page = @adventure.pages.new(pages_params)
+    @page.adventure_id = @adventure.id
     if @page.save
-      if @page.name = 'end'
+      if @page.name == 'end'
         #redirect to index
       redirect_to root_path
       #[@adventure, @page]
@@ -22,21 +22,6 @@ class PagesController < ApplicationController
       render :edit
     end
   end
-
-  # def create
-  #   @page = @adventure.pages.new(page_params)
-  #   @page.adventure_id = @http://adventure.id
-  #   if @page.save
-  #     if@page.name == 'end'
-  #       redirect_to root_path
-  #     else
-  #       redirect_to new_adventure_page_path(@adventure)
-  #     end
-  #   else
-  #     flash[:errors] = @page.errors.full_messages
-  #     render :new
-  #   end
-  # end
 
   def show
     #creating show for show pages via the adventure hash using the load method
