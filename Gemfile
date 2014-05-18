@@ -40,6 +40,9 @@ group :test, :development do
   gem 'dotenv-rails'
 end
 
+gem 'unicorn-rails', :groups => [:development, :test]
+
+
 group :production do
   gem 'rails_12factor'
 end
