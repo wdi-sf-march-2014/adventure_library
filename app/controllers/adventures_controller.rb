@@ -10,6 +10,30 @@ class AdventuresController < ApplicationController
     end
   end
 
+  
+  def create
+    url = "user input"
+    LibrariesWorker.perform_async(url)
+  end
+#if guid doesn't exist in adventures.all
+#if start page doesn't exist
+#if end page doesn't exist
+
+  def scrape_adventures(library)
+    @libraries = Library.all
+    @libraries.each do |lib|
+      response = Typhoeus.get(lib.url + "adventures.json")
+      parse = JSON.parse(response.body)
+      parse["title"].each do |link|
+      if Typhoeus.get(link["url"] + "libraries.json").response_code == 200
+        Library.create(link)
+        binding.pry
+        scrape(link)
+      end
+    end
+  end
+end
+
   def show
     @pages = @adventure.pages
   end

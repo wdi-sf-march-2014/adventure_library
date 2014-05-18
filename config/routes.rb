@@ -1,8 +1,9 @@
 AdventureLibrary::Application.routes.draw do
-  resources :libraries, :only => [:index, :show]
+  resources :libraries, :only => [:index]
   resources :adventures do
     resources :pages
   end
+
 root 'adventures#index'
 #              Prefix Verb   URI Pattern                                        Controller#Action
 #           libraries GET    /libraries(.:format)                               libraries#index

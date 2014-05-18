@@ -46,17 +46,17 @@ describe '/adventures' do
     end
   end
 
-  # describe 'GET with HTML' do
-  #   before do
-  #     get '/adventures'
-  #   end
-  #   it 'returns all adventures'
-  #   it 'returns adventures made on another server'    
-  # end
+  describe 'GET with HTML' do
+    before do
+      get '/adventures'
+    end
+    it 'returns all adventures'
+    it 'returns adventures made on another server'    
+  end
 
-  # describe 'POST' do
-  #   it 'adds a locally made adventure'
-  # end
+   describe 'POST' do
+     it 'adds a locally made adventure'
+   end
 end
 
 describe '/libraries' do
