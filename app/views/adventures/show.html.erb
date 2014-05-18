@@ -1,9 +1,10 @@
-<h1>start page</h1>
+
 
 <h3>Title:<%=  @adventure.title %></h3>
 
-<% @adventure.pages.each do |page| %>
-   <h6>(Current page: <%= page.name %>)</h6></br>
-<% end %>
+<h3><b>Current pages</b>:<% @adventure.pages.each do |page| %>
+  <a href="<%= page.name %>"><%= page.name %></a>
+<% end %></h3>
+
 <%= sanitize linkify_page @page %></br>
 <%= link_to "Add page", new_adventure_page_path(@adventure) %>

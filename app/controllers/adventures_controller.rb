@@ -32,7 +32,7 @@ class AdventuresController < ApplicationController
     @adventure = Adventure.new adventure_params
     @adventure.guid = SecureRandom.urlsafe_base64(10)
     if @adventure.save
-    redirect_to root_path
+    redirect_to new_adventure_page_path(@adventure)
     else
       flash[:errors] = @adventure.errors.full_messages
       render :edit

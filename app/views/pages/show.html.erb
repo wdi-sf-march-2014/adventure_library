@@ -2,9 +2,9 @@
 
 <%#=  @adventure.title %>
 
-<%# @adventure.pages.each do |page| %>
+<% @adventure.pages.each do |page| %>
    <%#= page.name %>
-<%# end %>
+<% end %>
 
 <%= sanitize linkify_page @page %>
 
