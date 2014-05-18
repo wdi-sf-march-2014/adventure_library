@@ -6,10 +6,11 @@ class AdventuresWorker
     library = Library.find(library_id)
     response = Typhoeus.get("#{library.url}/adventures.json")  
     @adventures = JSON.parse(response.body)
-    @adventures['adventures'].each do |g|
-    if Adventure.find_by(guid: g['guid']).exists?
-    else
-      Adventure.create(guid: g['guid'], title: g['title'], author: g['author'])
+    @adventures['adventures'].each do |adv|
+      if Adventure.find_by(guid: adv['guid'])
+      else
+        library.adventures.create(guid: adv['guid'], title: adv['title'], author: adv['author'], :pages_attributes => adv[:pages])
+      end
     end
   end
 end

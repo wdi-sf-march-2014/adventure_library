@@ -2,6 +2,9 @@ class LibrariesController < ApplicationController
 
   def index
     @libraries = Library.all
+    @libraries.each do |library|
+    AdventuresWorker.perform_async(library.id)
+    end
   end
 
   def new
