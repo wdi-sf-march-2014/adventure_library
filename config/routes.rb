@@ -1,5 +1,9 @@
 AdventureLibrary::Application.routes.draw do
   
+  #Sidekiq web interface
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   root to: 'adventures#index'
 
   resources :adventures do

@@ -3,7 +3,7 @@ class LibrariesController < ApplicationController
   def index
     @libraries = Library.all
     @libraries.each do |library|
-     AdventuresWorker.perform_async(library.id)
+      AdventuresWorker.perform_async(library.id)
     end
     respond_to do |format|
       format.html
@@ -26,13 +26,9 @@ class LibrariesController < ApplicationController
     end
   end
 
-  def scrape_libraries
-    Typhoeus.get
-  end
-
   private
   def library_params
-    params.require(:library).permit(:url)
+    params.require(:library).permit(:url, :library_id)
   end
 
 end
