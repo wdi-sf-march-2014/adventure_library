@@ -5,7 +5,7 @@
   <%= f.text_field :author, placeholder: "Author" %><br></br>
     <%= f.fields_for :pages, @page do |b| %><br> 
     <%= b.hidden_field :name, value: "start" %><br>
-    <%= b.text_area :text, placeholder: "Page Text" %><br>
+    <%= b.text_area :text, placeholder: "So what's your story? Linking to another story is simple! Just type [[link text|linked_to_page_name]]" %>
     <%= b.hidden_field :name, value: "end" %><br>
     <%= b.text_area :text, placeholder: "Page Text" %><br>
     <% end %>
