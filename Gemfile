@@ -52,7 +52,8 @@ gem 'sidekiq'
 gem 'pry-rails'
 #pry in rails
 
-#gem 'sinatra' :require => false
+gem 'sinatra', :require => false
+#sinatra
 
 gem 'typhoeus'
 #parsing json
