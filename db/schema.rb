@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20140516070154) do
   enable_extension "plpgsql"
 
   create_table "adventures", force: true do |t|
-    t.integer  "library_id"
     t.string   "title"
     t.string   "author"
     t.string   "guid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "library_id"
   end
 
   add_index "adventures", ["library_id"], name: "index_adventures_on_library_id", using: :btree
