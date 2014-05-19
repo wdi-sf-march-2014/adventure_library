@@ -15,6 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+gem 'better_errors'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -26,6 +28,7 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -39,13 +42,36 @@ group :test, :development do
   gem 'dotenv-rails'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+group :production do
+ gem 'rails_12factor'
+end
+
+gem 'sidekiq'
+#running parallel threading
+
+gem 'pry-rails'
+#pry in rails
+
+gem 'sinatra', :require => false
+#sinatra
+
+gem 'typhoeus'
+#parsing json
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'unicorn-rails'
 
-gem 'sidekiq'
+#Foreman can help manage multiple processes that your Rails app depends upon when running in development. 
+#It also provides an export command to move them into production.
+gem 'foreman'
+
+
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.1.2'
+
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

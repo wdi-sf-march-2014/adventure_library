@@ -1,0 +1,11 @@
+<h1>Editing Adventure</h1>
+
+<%= form_for(@adventure) do |f| %> 
+  <%= f.text_field :title, placeholder: "#{@adventure.title}" %> 
+  <%= f.text_field :author, placeholder: "#{@adventure.author}" %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to 'Show', @adventure %> 
+<%= link_to 'Back', adventures_path %>
+<%= link_to 'Add Page', new_adventure_page_path(@adventure, @page) %>

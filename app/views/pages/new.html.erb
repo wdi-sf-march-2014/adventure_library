@@ -1,0 +1,7 @@
+<h1>Create New Page for <%=@adventure.title%></h1>
+
+<%= form_for([@adventure, @page]) do |f| %> 
+  <%= f.text_field :name, placeholder: "Name" %> 
+  <%= f.text_field :text, placeholder: "Text" %>
+  <%= f.submit %>
+<% end %>

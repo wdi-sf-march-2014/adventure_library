@@ -1,0 +1,9 @@
+<h1>Create New Post</h1>
+
+<%= form_for(@post) do |f| %> <!-- form for creating a new post -->
+  <%= f.text_field :title, placeholder: "Title" %> <!-- field for the post's title  -->
+  <%= f.text_field :link, placeholder: "Link" %> <!-- field for the post's link  -->
+  <%= f.submit %> <!-- submit button for the post -->
+<% end %>
+
+<!-- Note: there will be a hash within a hash for the bids -->
