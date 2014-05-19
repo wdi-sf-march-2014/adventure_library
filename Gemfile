@@ -39,6 +39,7 @@ group :test, :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'dotenv-rails'
+  gem 'unicorn-rails'
 end
 
 group :production do
@@ -52,6 +53,8 @@ end
 gem 'sidekiq'
 
 gem 'unicorn'
+
+
 
 # gem 'foreman'
 
