@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   include PagesHelper
+  
   before_action :load_adventure
 
   def index
@@ -8,9 +9,12 @@ class PagesController < ApplicationController
   end
 
   def show
-    @pages = @adventure.pages.find_by_name("start")
-    @adventure = Adventure.find(params[:adventure_id])
-    # @page = @adventure.pages.find(params[:name])
+    begin
+      load_adventure
+      @page = @adventure.pages.find_by_name("start")
+    rescue ActiveRecord::RecordNotFound
+      render :file => "#{Rails.root}/public/422", :layout => false, :status => 422
+    end
   end
 
   def new
@@ -25,19 +29,22 @@ class PagesController < ApplicationController
     redirect_to root_path
   end
 
-  def load_adventure
-    @adventure = Adventure.find(params[:adventure_id])
-    redirect_to root_path if @adventure.blank?
-  end
 
   def edit
+    load_adventure
+    load_page
   end
 
   def update
     load_adventure
     page = Page.find_by_id(params[:id])
     page.update(page_params)
-    redirect_to edit_adventure_path(adventure)
+    redirect_to edit_adventure_path(@adventure)
+  end
+
+  def load_adventure
+    @adventure = Adventure.find(params[:adventure_id])
+    redirect_to root_path if @adventure.blank?
   end
 
   def load_page
@@ -47,7 +54,7 @@ class PagesController < ApplicationController
 
   private
   def page_params
-    params.require(:page).permit(:name, :text)#, :adventure_attributes=>[:adventure_id])
+    params.require(:page).permit(:name, :text)
   end
 
 end

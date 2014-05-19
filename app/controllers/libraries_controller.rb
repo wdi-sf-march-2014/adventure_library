@@ -13,6 +13,7 @@ class LibrariesController < ApplicationController
   end
 
   def show
+    @libraries = Library.all
   end
   
   def create

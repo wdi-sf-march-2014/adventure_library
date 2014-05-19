@@ -30,6 +30,7 @@ class AdventuresController < ApplicationController
   def show
     @adventure = Adventure.find(params[:id])
     @page = @adventure.pages.find_by_name("start")
+    @pages = @adventure.pages.find_by_id(params[:id])
   end
 
   def create
