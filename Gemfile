@@ -42,10 +42,16 @@ group :test, :development do
   gem 'dotenv-rails'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
+gem 'dotenv-rails'
+
 gem 'unicorn'
 
 gem 'sidekiq'
