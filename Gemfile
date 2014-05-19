@@ -46,8 +46,11 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'unicorn-rails'
 
 gem 'sidekiq'
+
+gem 'sinatra', :require => false
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
