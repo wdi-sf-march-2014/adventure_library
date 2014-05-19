@@ -2,45 +2,29 @@ class AdventuresController < ApplicationController
   #before_filter :load_action
 
   def index
+    @library = Library.new
     @adventures = Adventure.all
-    @local_adventures = Adventure.where(library_id = nil)
+    @local_adventures = Adventure.where(library_id = nil) 
+
+    respond_to do |f|
+      f.html
+      f.json { render json: {adventures: @myadventures.as_json(include: { pages: { only: [:name, :text] }} )}, status: 200} 
+    end
   end
+
 
   # def new
   #   @adventure = Adventure.new
-  # end
-
-  # def create
-  #   @adventure = Adventure.create(adventure_params)
-  #   @adventure.save
-  #   @adventure.update_attributes(:guid => SecureRandom.urlsafe_base64(10))
-  #   redirect_to adventures_path
   # end
 
   def show
     @adventure = Adventure.find(params[:id])
   end
 
-  # def edit
-    
-  #   @adventure = Adventure.find(params[:id])
-  # end
-
-  # def update
-  #   @adventure = Adventure.find(params[:id])
-  #   @adventure.update(adventure_params)
-  #   redirect_to adventures_path
-  # end
 
   def destroy
     @adventure = Adventure.find(params[:id])
     @adventure.destroy
     redirect_to adventures_path
-  end
-
-
-private
-  def adventure_params
-    params.require(:adventure).permit(:title, :author, :pages_attributes => [:name, :text])
   end
 end

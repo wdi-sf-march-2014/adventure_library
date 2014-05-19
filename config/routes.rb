@@ -17,7 +17,9 @@ AdventureLibrary::Application.routes.draw do
 #                     PATCH  /adventures/:id(.:format)                          adventures#update
 #                     PUT    /adventures/:id(.:format)                          adventures#update
 #                     DELETE /adventures/:id(.:format)                          adventures#destroy
-
+  
+  resources :libraries
+  
   resources :adventures do
     resources :pages
   end

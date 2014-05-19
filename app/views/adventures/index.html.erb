@@ -5,6 +5,18 @@
     <ul>
       <li><%= link_to adventure.title, adventure_page_path(adventure, current) %> by <%=adventure.author %></li>
  
-      <li><%= link_to 'Delete', adventures_path , method: :delete, data: {confirm: 'Are you sure?'} %></li>
+      <li><%= link_to 'Destroy', adventure_path(adventure) , method: :delete, data: {confirm: 'Are you sure?'} %></li>
     </ul>
+  <% end %>
+
+<h1>Enter a Library here</h1>
+  <%= form_for @library do |f| %>
+    <p>
+      <%= f.label :url %><br>
+      <%= f.text_field :url %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
   <% end %>
