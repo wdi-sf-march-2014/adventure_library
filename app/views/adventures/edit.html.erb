@@ -1,6 +1,17 @@
 <h1> EDIT YOUR ADVENTURE! </h1>
 <%= form_for @adventure do |f| %>
+  <%= f.label :edit_title %><br>
   <%= f.text_field :title, placeholder: "Title" %><br></br>
+  <%= f.label :edit_author %><br>
   <%= f.text_field :author, placeholder: "Author" %><br></br>
-  <%= f.submit  %>
-<% end %>
+  <%= f.fields_for :pages, @page do |b| %></br>
+    <%= f.label :edit_text %><br>
+    <%= b.text_area :text, placeholder: "Page Text" %></br>
+  <% end %>  
+<%= f.submit "Update", :class => ' btn btn-success btn-sm' %>    
+<%= link_to "Delete", adventure_path, :method => :delete, data: { :confirm => 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></br>
+
+<% end %><br>
+
+
+<p><%= link_to("Home", root_path) %></p>

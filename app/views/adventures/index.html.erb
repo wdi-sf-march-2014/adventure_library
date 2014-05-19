@@ -1,25 +1,44 @@
-<h1> Welcome adventure seeker!! </h1>
-
-<h2> Local Adventures! </h2>
-<% @adventures.each do |adventure| %>
-  <% if adventure.library_id.nil? %>
-  <p> Title: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.title, adventure_path(adventure) %></a> </p>
-  <p> Author: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.author, adventure_path(adventure) %></a> </p>
-  <br>
-  <% end %>
-<% end %>
-
-<h2> Adventures from the world wide web! </h2>
-<% @adventures.each do |adventure| %>
-  <% if adventure.library_id %>
-  <p> Title: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.title, adventure_path(adventure) %></a></p>
-  <p> Author: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.author, adventure_path(adventure) %></a> </p>  <br>
-  <% end %>
-<% end %>
+<h1> Welcome adventure seeker!! </h1><br>
 
 <%= button_to "Create new adventure", { controller: :adventures, action: :new }, :method => :get, :class => "btn btn-default btn-sm btn-success" %><br></br>
 
-<% form_for @library do |f| %>
-<%= f.text_field :url, placeholder: "url" %>
-<%= f.submit %>
+<h2> Local Adventures! </h2>
+<div id="wrapper">
+  <div id="columns">
+    <div class="pin">
+<% @local_adventures.each do |adventure| %>
+  <% if adventure.library_id.nil? %>
+  <p> Title: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.title, adventure_path(adventure) %></a> </p>
+  <p> Author: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.author, adventure_path(adventure) %></a> </p>
+  <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %>
+  <br>
+  </div>
+  </div>
+</div>
+  <% end %>
 <% end %>
+
+<h2> Adventures from the world wide web! </h2><br>
+<div id="wrapper">
+  <div id="columns">
+
+<% @adventures.each do |adventure| %>
+  <% if adventure.library_id %>
+  <div class="pin">
+    <p> Title: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.title, adventure_path(adventure) %></a></p>
+  <p> Author: <a href="<%=adventure_path(adventure)%>"><%= link_to adventure.author, adventure_path(adventure) %></a> </p>  
+  <p> Origin: <%= link_to(adventure.library.url, adventure.library.url) %> </p>
+  <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %>
+  <p> 
+  </div>
+  </div>
+</div>
+  <% end %>
+<% end %>
+
+<%= form_for @library do |f| %>
+  <%= f.text_field :url, placeholder: "http://example.com/" %>
+  <%= f.submit "Add a Library for Scraping"%>
+<% end %>
+
+

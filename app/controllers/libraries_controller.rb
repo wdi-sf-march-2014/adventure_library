@@ -3,7 +3,7 @@ class LibrariesController < ApplicationController
   def index
     @libraries = Library.all
     @libraries.each do |library|
-    AdventuresWorker.perform_async(library.url)
+      AdventuresWorker.perform_async(library.url)
     end
   end
 

@@ -3,6 +3,7 @@ class AdventuresController < ApplicationController
 def index
   @adventures = Adventure.all
   @library = Library.new
+  @local_adventures = @adventures.where(library_id: nil)
   respond_to do |format|
     format.html
     format.json { render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
@@ -32,10 +33,6 @@ def show
   redirect_to adventure_page_path(@adventure, @start)
 end
 
-def start
-  
-end
-
 def edit
   @adventure = Adventure.find(params[:id])
 end
@@ -43,7 +40,7 @@ end
 def update
   @adventure = Adventure.find(params[:id])
   if @adventure.update(adventure_params)
-    redirect_to root_path
+    redirect_to(@adventure)
   else
     flash[:errors] = @adventure.errors.full_messages
     render :edit
@@ -58,7 +55,7 @@ end
 
 private
   def adventure_params
-    params.require(:adventure).permit(:title, :author, pages_attributes: [:name, :text])
+    params.require(:adventure).permit(:title, :author, pages_attributes: [:name, :text], :libraries_attributes=>[:url])
   end
 
 end
