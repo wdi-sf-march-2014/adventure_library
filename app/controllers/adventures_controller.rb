@@ -4,7 +4,7 @@ class AdventuresController < ApplicationController
 
   def index
     @library = Library.new
-    @adventures = Adventure.all
+    @adventures = Adventure.all.order(:title)
     @local_adventures = Adventure.where(library_id: nil)
     respond_to do |format|
       format.html

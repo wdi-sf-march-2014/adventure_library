@@ -19,6 +19,7 @@
     <% @adventures.each do |adventure| %>
       <% if adventure.library_id %>
       <li><a href="<%=adventure_path(adventure)%>"><%= adventure.title %></a></li>
+      <li>Uploaded <%= timeago(adventure.created_at) %> from <%= adventure.author %></li></h6>
       <% end %>
     <% end %>
   </ul>
