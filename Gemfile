@@ -39,7 +39,7 @@ group :test, :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'dotenv-rails'
-  gem 'unicorn-rails'
+  # gem 'unicorn-rails'
 end
 
 group :production do
