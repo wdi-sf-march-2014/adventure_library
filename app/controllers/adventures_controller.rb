@@ -6,12 +6,6 @@ class AdventuresController < ApplicationController
     # @scraped = Typhoeus.get("#{@url}/libraries")
   end
 
-  def show
-    @adventure = Adventure.find(params[:id])
-    @start = @adventure.pages.find_by(name: "start").id
-    redirect_to adventure_page_path(@adventure, @start)
-  end
-
   def new
     @adventure = Adventure.new
     @page = @adventure.pages.build
@@ -26,6 +20,12 @@ class AdventuresController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @adventure = Adventure.find(params[:id])
+    @start = @adventure.pages.find_by(name: "start").id
+    redirect_to adventure_page_path(@adventure, @start)
   end
 
   def edit

@@ -13,7 +13,7 @@ adv.pages.create!(:name => "start",:text => "This is a great text adventure whic
 adv.pages.create!(:name => "end",:text => "Wow that adventure was amazing!")
 
 adv = Adventure.create!(:title => "#{name}'s Second Adventure", :author => name)
-adv.pages.create!(:name => "start",:text => "I am totally ready to [[start this adventure|end]]")
+adv.pages.create!(:name => "start",:text => "I totally ready to [[start this adventure|end]]")
 adv.pages.create!(:name => "end",:text => "Wow that adventure was amazing!")
 
 adv = Adventure.create!(:title => "#{name}'s Third Adventure", :author => name)
