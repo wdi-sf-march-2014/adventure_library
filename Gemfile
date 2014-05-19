@@ -39,6 +39,9 @@ group :test, :development do
   gem 'dotenv-rails'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -46,6 +49,12 @@ end
 gem 'unicorn'
 
 gem 'sidekiq'
+gem 'sidetiq'
+gem 'typhoeus'
+
+gem 'sinatra', require: false
+gem 'slim'
+gem 'bootstrap-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

@@ -1,0 +1,17 @@
+<h1>New</h1>
+
+<h4>Adventure Info</h4>
+<%= form_for @adventure do |f| %>
+  <%= f.text_field :title, placeholder: 'adventure title', class: "form-control" %>
+  <%= f.text_field :author, placeholder: 'your name', class: "form-control" %><br>
+
+  <h4>Story Lines</h4>
+  <h5>Be sure to title one "start" and add to links to the next options in the story, using the following format: [[link text|page_title_to_link_to]]</h5><br>
+
+  <%= f.fields_for :pages, @pages do |b| %>
+  	<%= b.text_field :name, placeholder: 'next page title', class: "form-control" %>
+  	<%= b.text_area :text, placeholder: 'next story line', class: "form-control" %><br>
+  <% end %>
+
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
