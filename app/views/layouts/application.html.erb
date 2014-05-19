@@ -6,7 +6,13 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<ul class="nav nav-pills"  >
+	<li> <%= link_to "Home", root_path, class: "btn btn-primary" %></li>
+	<li> <%= link_to "New Adventure", new_adventure_path, class: "btn btn-primary" %> </li>
+	<li> <%= link_to "Adventure Index", adventures_path, class: "btn btn-primary" %> </li>
+</ul>
+<body class="<%= yield :body_type %>">
+	
 
 <%= yield %>
 

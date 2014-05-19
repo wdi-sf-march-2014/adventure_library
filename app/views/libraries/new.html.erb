@@ -1,0 +1,6 @@
+<h1>Add a new library</h1>
+ <%= form_for @library do |f| %>
+   <%= f.label :url %>
+   <%= f.text_field :url, placeholder: "Enter url" %>
+   <%= f.submit "Add the library" %>
+ <% end %>

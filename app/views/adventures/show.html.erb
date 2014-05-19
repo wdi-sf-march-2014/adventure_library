@@ -1,0 +1,17 @@
+<% content_for :body_type do%>
+adventureshow<% end %>
+
+<div class="advshow">
+	<h3>Title:</h3>
+		<p> <%= @adventure.title %> </p>
+	
+	<h3>Written By:</h3>
+		<p> <%= @adventure.author %> </p>
+	
+	<h3>Start Your Adventure!</h3>
+		<p> <%= linkify_page(@page.first).html_safe %> </p>
+
+<h3> Or  </h3>
+	<%= link_to "Add to Story", new_adventure_page_path(@adventure),
+	class: "btn btn-success" %>
+</div>

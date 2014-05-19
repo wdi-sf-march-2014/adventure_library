@@ -1,0 +1,8 @@
+<% content_for :body_type do%>
+pagesshow<% end %>
+
+<div class="pageshowdiv">
+	 <h3><%= @adventure.title %> </h3>
+	 
+	 <p><%= linkify_page(@page).html_safe %>
+</div>
