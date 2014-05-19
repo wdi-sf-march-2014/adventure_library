@@ -12,4 +12,4 @@ adv.pages.create!(:name => "start", :text => "This is a great text adventure whi
 adv.pages.create!(:name => "end", :text => "Wow that adventure was amazing!")
 adv.pages.create!(:name => "end2", :text => "Wow that's kinda lame!")
 
-lib = Library.create!(:url => "http://example.com/")
+lib = Library.create!(:url => "http://sleepy-garden-8077.herokuapp.com/")

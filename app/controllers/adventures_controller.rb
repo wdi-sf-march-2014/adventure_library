@@ -4,7 +4,7 @@ class AdventuresController < ApplicationController
   def index
     @adventures = Adventure.all
     @library = Library.new
-    @local_adventures = @adventures.where(library_id: nil)
+    @local_adventures = Adventure.where(library_id: nil)
     respond_to do |format|
       format.html
       format.json { render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]} })} }
@@ -34,10 +34,8 @@ class AdventuresController < ApplicationController
   end
 
   def create
-    @adventure = Adventure.new(params[:adventure].permit(:title, :author, :pages_attributes=>[:name, :text]))
-    # @adventure = Adventure.new adventure_params
+    @adventure = Adventure.new(adventure_params)
     @adventure.guid = SecureRandom.urlsafe_base64(10)
-    # adventure.pages.create(name: "start", text: params[:text])
     if @adventure.save
     redirect_to new_adventure_page_path(@adventure)
     else
@@ -53,7 +51,12 @@ class AdventuresController < ApplicationController
 
   def update
     @adventure = Adventure.find_by_id(params[:id])
-    redirect_to(@adventure)
+    if @adventure.update(adventure_params)
+      redirect_to(@adventure)
+    else
+      flash[:errors] = @adventure.errors.full_messages
+    render :edit
+    end
   end
 
   def destroy

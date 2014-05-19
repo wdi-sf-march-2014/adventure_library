@@ -13,34 +13,23 @@ class LibrariesController < ApplicationController
   end
 
   def show
-    @libraries = Library.all
+    # @libraries = Library.all
   end
   
   def create
-    library = Library.new library_params
-    LibraryWorker.perform_async(library.url)
+    library = Library.new(library_params)
     if library.save
+      LibraryWorker.perform_async(library.id)
       redirect_to libraries_path
     else
       flash[:errors] = @adventure.errors.full_messages
       redirect_to :back
     end
   end
-
-  # def load_adventure
-  #   @adventure = Adventure.find(params[:adventure_id])
-  #   redirect_to root_path if @adventure.blank?
-  # end
-
-
-  # def load_library
-  #   @library = @adventure.libraries.find(params[:id])
-  #   redirect_to root_path if @library.blank?
-  # end
   
 private
   def library_params
-    params.require(:library).permit(:url, :id, :guid)
+    params.require(:library).permit(:url, :id)
   end
 
 end
