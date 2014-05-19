@@ -3,6 +3,7 @@ class Adventure < ActiveRecord::Base
 
 	validates :title, presence: true
   validates :author, presence: true
+  validates_uniqueness_of :guid
 
   belongs_to :library
   has_many :pages, dependent: :destroy

@@ -1,16 +1,28 @@
-<h1>All Adventures</h1>
-
-<%= link_to('add a new adventure', new_adventure_path) %>
-
-<h3>on this server</h3>
+<div class="col-xs-9">
+<h3>Local To This Server</h3>
 <% @adventures.each do |adv| %>
   	<%= link_to(adv.title, adventure_path(adv.id)) %>
   	by <%= adv.author %>
     <%= link_to('click to edit', edit_adventure_path(adv.id)) %>
 <% end %>
 
-<h3>from other servers</h3>
+<h3>Imported From Other Servers</h3>
 <% @other_adventures.each do |adv| %>
 	<%= link_to(adv.title, adventure_path(adv.id)) %>
 	by <%= adv.author %>
+	from <%= Library.find(adv.library_id).url %>
+	<br>
 <% end %>
+</div>
+<div class="col-xs-3">
+<h3>Add Your Own</h3>
+<br>
+<%= button_to 'Write One', new_adventure_path, method: :get, class: "btn btn-primary" %>
+
+<br><br><br><br>
+
+<%= form_for :import_library, method: :post, url: import_library_path do |f| %>
+  <%= f.url_field :url, placeholder: 'url', class: "form-control" %><br>
+  <%= f.submit 'Import Some', class: "btn btn-primary" %>
+<% end %>
+</div>

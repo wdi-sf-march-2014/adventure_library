@@ -50,6 +50,11 @@ gem 'unicorn'
 
 gem 'sidekiq'
 gem 'sidetiq'
+gem 'typhoeus'
+
+gem 'sinatra', require: false
+gem 'slim'
+gem 'bootstrap-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

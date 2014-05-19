@@ -3,7 +3,7 @@ class AdventuresController < ApplicationController
 
 	def index
 		@adventures = Adventure.where(library_id: nil)
-		@other_adventures = Adventure.where(library_id: !nil)
+		@other_adventures = Adventure.where.not(library_id: nil)
 	end
 
 	def show
@@ -25,7 +25,7 @@ class AdventuresController < ApplicationController
       redirect_to new_adventure_path, notice: 'please try again.'
     end
 	end
-
+	
 	def edit
 		@adventure = Adventure.find(params[:id])	
 		@pages = @adventure.pages
