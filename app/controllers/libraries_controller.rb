@@ -4,9 +4,10 @@ class LibrariesController < ApplicationController
 		@libraries = Library.all
 	end
 
-	def new
-		@library = Library.new
-	end
+# Don't need this bc we instantiate the new library in the Adventures controller (?)
+	# def new
+	# 	@library = Library.new
+	# end
 
 	def create
 		@library = Library.create(library_params)

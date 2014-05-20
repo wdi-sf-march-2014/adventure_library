@@ -55,6 +55,11 @@ class AdventuresController < ApplicationController
 		redirect_to root_path
 	end
 
+# Allows us to create a new instance of library from a form on the Adventures#index
+	  def new_library
+    @library = Library.new(params[:url])
+  end
+
 	private
 		def adventure_params
 			params.require(:adventure).permit(:title, :author, :pages_attributes => [:name, :text])

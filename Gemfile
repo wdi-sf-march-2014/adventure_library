@@ -46,10 +46,11 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
-
 gem 'sidekiq'
-
-gem 'foreman'
+# gem 'foreman'
+# Sinatra and slim for Sidekiq web interface
+gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'slim'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

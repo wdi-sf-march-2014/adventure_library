@@ -7,12 +7,12 @@ class LibrariesWorker
 		response = Typhoeus.get("#{library.url}/libraries.json")
 		@libraries = JSON.parse(response.body)
 		@libraries['libraries'].each do |l|
-			if Library.find_by(url: l['url'])
-			else
-				Library.create(url: l['url'])
+			library = Library.find_by(url: l['url'])
+			if !library
+				library = Library.create(url: l['url'])
 			end
-			AdventuresWorker.perform_async(l['id'])
-
+			
+			AdventuresWorker.new.perform(library.id)
 		end
 	end
 end

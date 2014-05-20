@@ -36,5 +36,6 @@ class PagesController < ApplicationController
 
 		def load_adventure
 			@adventure = Adventure.find(params[:adventure_id])
+			redirect_to root_path if @adventure.blank?
 		end
 end
