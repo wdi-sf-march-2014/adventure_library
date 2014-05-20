@@ -2,6 +2,10 @@ class AdventuresController < ApplicationController
 
 	def index
 		@adventures = Adventure.all
+		respond_to do |format|
+			format.html
+			format.json { render :json => {:adventures => @adventures.as_json(except: [:id, :library_id], include: {:pages => {except: [:id, :adventure_id, :created_at, :updated_at]}} )}}
+		end
 	end
 ## When the user hits submit on 'add a library' in the index, they should call the scraped libraries method.
 ## This should be in the libraries_controller
