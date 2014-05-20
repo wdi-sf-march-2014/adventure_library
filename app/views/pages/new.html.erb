@@ -1,0 +1,20 @@
+<h1>Add a Page To Your Adventure</h1>
+<br>
+<br>
+<%= form_for ([@adventure, @page]) do |f| %>
+	<%= f.text_field :name, placeholder: "Name this Page", :autofocus => true %>
+	<%= f.text_area :text, placeholder: "Continue the story..." %>
+	Enter the next page in this format: 
+
+	<%= f.submit "Add a page and continue story" %>
+<% end %>
+<br>
+<br>
+<%= form_for ([@adventure, @page]) do |f| %>
+	<%= f.hidden_field :name, value: "end" %>
+	<%= f.text_area :text, placeholder: "End your story!" %>
+	<%= f.submit "Save and finish your story" %>
+<% end %>
+
+
+

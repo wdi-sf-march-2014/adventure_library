@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'typhoeus'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
@@ -44,8 +46,11 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
-
 gem 'sidekiq'
+# gem 'foreman'
+# Sinatra and slim for Sidekiq web interface
+gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'slim'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

@@ -1,0 +1,16 @@
+<h1> All Adventures </h1>
+
+<% @adventures.each do |adventure| %>
+	<%= link_to adventure.title, adventure_path(adventure)%> by: <%= adventure.author %> <br>
+<% end %>
+<br>
+<%= @scraped %>
+<br>
+
+<%= link_to "Create New Adventure", new_adventure_path %>
+<br>
+Add Your Library:
+<%= form_for Library.new do |f| %>
+	<%= f.text_field :url, :placeholder => "Enter URL" %>
+	<%= f.submit  "Submit" %>
+<% end %>
