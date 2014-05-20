@@ -1,11 +1,19 @@
-<h1>Adventures!</h1>
+<h3>Adventures!</h3>
 
 <% @adventures.each do |adventure| %>
-  <div class="row">
-    <div class="col-md-4 col-sm-4">
-<!--       <p class="lead"><%#= link_to(adventure.title, adventure) %> -->
-      <p>Title: <%= link_to(adventure.title, adventure) %></p>
-      <p>Author: <%= adventure.author %></p>      
-    </div>
-  </div>
+<!--   <div class="row">
+    <div class="col-md-4 col-sm-4"> -->
+      <p><%= link_to adventure.title, adventure_page_path(adventure_id: adventure.id, id: adventure.pages.find_by(name: "start")) %>
+      by <%= adventure.author %></p>
+<!--     </div>
+  </div> -->
 <% end %>
+
+<h5>Add your adventure library:</h5>
+<%= form_for @library do |f| %>
+  <%#= f.label :url %>
+  <%= f.text_field :url, :autofocus => true, :placeholder => "<enter URL here>" %>
+  <%= f.submit %>
+<% end %>
+
+<br><%= link_to "Create Your Own Adventure!", new_adventure_path %>

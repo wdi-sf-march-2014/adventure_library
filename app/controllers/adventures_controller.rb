@@ -1,7 +1,15 @@
 class AdventuresController < ApplicationController
 
+  respond_to :json
+
   def index 
+    @library = Library.new
     @adventures = Adventure.all
+
+    respond_with(@adventures) do |format|
+      format.html {render "index"}
+      format.json {render json: {adventures: @adventures}, except: :id, include: :pages}
+    end 
   end
 
   def show
@@ -10,19 +18,42 @@ class AdventuresController < ApplicationController
 
   def new
     @adventure = Adventure.new
+    @adventure.pages.build
   end
 
-  def create
-    @adventure = Adventure.new(adventure_params)
-    @adventure.guid = SecureRandom.urlsafe_base64(10)
-    if @adventure.save
-      redirect_to adventures_path
-    else
-      flash[:errors] = @adventure.errors.full_messages
-      render :edit
+  # def create
+  #   @adventure = Adventure.new(adventure_params)
+  #   @adventure.guid = SecureRandom.urlsafe_base64(10)
+  #   if @adventure.pages.find_by(name: "start") != nil
+  #     if @adventure.save
+  #       redirect_to new_adventure_page_path(@adventure)
+  #     end
+  #   else
+  #     flash[:errors] = @adventure.errors.full_messages
+  #     render :edit
+  #   end
+  # end
+
+  def create 
+    @adventure = Adventure.new adventure_params
+    if has_start_page? == true
+      @adventure.save
     end
+    redirect_to new_adventure_page_path(@adventure)
   end
 
+  def edit 
+
+  end
+
+  def update
+
+  end
+
+  private
+    def adventure_params
+      params.require(:adventure).permit(:title, :author, :pages_attributes=>[:name, :text])
+    end
 end
 
  # def create

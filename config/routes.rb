@@ -1,12 +1,25 @@
 AdventureLibrary::Application.routes.draw do
+  
+  resources :libraries
+
   resources :adventures do
     resources :pages
   end
 
   root to: 'adventures#index'
 
+end
+
 # Jeffs-MacBook-Pro-2:adventure_library Jeff$ rake routes
 #              Prefix Verb   URI Pattern                                        Controller#Action
+#           libraries GET    /libraries(.:format)                               libraries#index
+#                     POST   /libraries(.:format)                               libraries#create
+#         new_library GET    /libraries/new(.:format)                           libraries#new
+#        edit_library GET    /libraries/:id/edit(.:format)                      libraries#edit
+#             library GET    /libraries/:id(.:format)                           libraries#show
+#                     PATCH  /libraries/:id(.:format)                           libraries#update
+#                     PUT    /libraries/:id(.:format)                           libraries#update
+#                     DELETE /libraries/:id(.:format)                           libraries#destroy
 #     adventure_pages GET    /adventures/:adventure_id/pages(.:format)          pages#index
 #                     POST   /adventures/:adventure_id/pages(.:format)          pages#create
 #  new_adventure_page GET    /adventures/:adventure_id/pages/new(.:format)      pages#new
@@ -24,7 +37,6 @@ AdventureLibrary::Application.routes.draw do
 #                     PUT    /adventures/:id(.:format)                          adventures#update
 #                     DELETE /adventures/:id(.:format)                          adventures#destroy
 #                root GET    /                                                  adventures#index
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -80,4 +92,4 @@ AdventureLibrary::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+
