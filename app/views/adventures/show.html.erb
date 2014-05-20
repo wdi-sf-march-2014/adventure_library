@@ -1,0 +1,10 @@
+show
+
+<h3>Title: <%=  @adventure.author %></h3>
+
+<!-- <h3><b>Current pages</b>:<%# @adventure.pages.each do |page| %>
+  <a href="<%#= page.name %>"><%#= page.name %></a>
+<%# end %></h3> -->
+
+<%= sanitize linkify_page @page %></br>
+<%= link_to "Add page", new_adventure_page_path(@adventure) %>

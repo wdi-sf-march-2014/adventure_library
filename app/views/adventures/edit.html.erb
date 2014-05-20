@@ -1,0 +1,19 @@
+<h1>Edit adventure</h1>
+
+  <%= form_for @adventure do |f| %>
+    
+    <%= label_tag(:title, "Type:") %>
+    <%= f.text_field :title %>
+
+    <%= label_tag(:author, "Author") %>
+    <%= f.text_area :author %>
+      
+    <%= f.submit "Update", :class => ' btn btn-warning btn-sm' %>
+        
+    <%= link_to "Delete", adventure_path, :method => :delete, data: { :confirm => 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></br>
+
+    <%= f.fields_for :pages, @page do |b| %></br>
+      <%= b.text_area :text, placeholder: "Page Text" %></br>
+    <% end %>  
+  <% end %>
+

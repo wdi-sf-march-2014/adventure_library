@@ -1,0 +1,13 @@
+<h1>Create a new page for: <%= @adventure.title %> </h1>
+
+<h3><b>Current pages</b>:<% @adventure.pages.each do |page| %>
+  <a href="<%= page.name %>"><%= page.name %></a>
+<% end %></h3>
+
+<%= form_for @page, url: adventure_pages_path(@adventure.id) do |f| %>
+
+  <%= f.text_field :name, placeholder: "Page name" %>
+  <%= f.text_area :text, placeholder: "Tell your story! Link to another storyline by typing [[link text|linked_to_page_name]]" %>
+  <%= f.submit %>
+
+<% end %>

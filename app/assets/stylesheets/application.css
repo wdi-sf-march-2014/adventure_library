@@ -8,6 +8,23 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap.min.css 
  *= require_self
  *= require_tree .
  */
+
+h6 {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.breadcrumb {
+  background-color: transparent;
+}
+
+textarea {
+    border:1px solid #999999;
+    width:100%;
+    margin:5px 0;
+    padding:3px;
+}

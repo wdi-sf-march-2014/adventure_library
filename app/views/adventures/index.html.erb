@@ -1,0 +1,27 @@
+
+<h1>Local Adventures</h1>
+
+<%= link_to "Add Adventure", new_adventure_path, :class => "btn btn-success" %> 
+
+<% @local_adventures.each do |local| %>
+  <li><b><%= link_to local.title, adventure_path(local.id) %> 
+    <%= link_to "Edit", edit_adventure_path(local), :class => "btn btn-info btn-sm" %>
+    <%= link_to "Delete", adventure_path(local.id), :method => :delete, data: { :confirm => 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></b></li>
+  <% end %>
+
+
+
+<h1>All Adventures</h1>
+ 
+  <% @adventures.each do |adventure| %>
+    <li><b><%= link_to adventure.title, adventure_path(adventure.id) %> 
+    <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %>
+    <%= link_to "Delete", adventure_path(adventure.id), :method => :delete, data: { :confirm => 'Are you sure?'}, :class => 'btn btn-danger btn-sm' %></b></li>
+  <% end %>
+
+<!-- add new library from external site to list above -->
+<%= form_for @library do |l| %>
+  <%= l.text_field :url, placeholder: "http://example.com/" %>
+  <%= l.submit "Add a Library for Scraping"%>
+<% end %>
+<br></br>
