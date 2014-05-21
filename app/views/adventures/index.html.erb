@@ -1,0 +1,22 @@
+<h1>Welome to Sam's Adventure page!!</h1>
+  
+  <% @adventures.each do |adventure| %>
+    <% current = adventure.pages.find_by(name: "start") %>
+    <ul>
+      <li><%= link_to adventure.title, adventure_page_path(adventure, current) %> by <%=adventure.author %></li>
+ 
+      <li><%= link_to 'Destroy', adventure_path(adventure) , method: :delete, data: {confirm: 'Are you sure?'} %></li>
+    </ul>
+  <% end %>
+
+<h1>Enter a Library here</h1>
+  <%= form_for @library do |f| %>
+    <p>
+      <%= f.label :url %><br>
+      <%= f.text_field :url %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
