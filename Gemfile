@@ -27,6 +27,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'typhoeus'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -44,8 +46,11 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'unicorn-rails'
 
 gem 'sidekiq'
+
+gem 'sinatra', :require => false
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

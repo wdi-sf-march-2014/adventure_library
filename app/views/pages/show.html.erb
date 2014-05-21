@@ -1,0 +1,9 @@
+<h1><%= @adventure.title %></h1>
+<p>Written by: <%=@adventure.author%></p>
+
+<% @adventure.pages.each do |page| %>
+
+<% end %>
+
+
+<%= raw linkify_page(@page) %> 
