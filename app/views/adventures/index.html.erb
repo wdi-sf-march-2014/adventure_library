@@ -1,0 +1,20 @@
+<% content_for :body_type do%>
+adventureindex<% end %>
+
+<h2>Here are you current adventures!</h2>
+
+<table style="margin:auto">
+	<tr>
+		<th>Adventure Title</th>
+		<th>Written By</th>
+		<th>Delete</th>
+	</tr>
+
+<% @adventure.each do |adventure|%>
+	<tr>
+		<td><%= link_to adventure.title, adventure, class: "btn btn-default" %></td>
+		<td><%= adventure.author %></td>
+	<td><%= link_to "Delete Adventure", delete_adventures_path(adventure.id), method: :delete, data: {confirm: "you sure?"}, class: "btn btn-danger" %></td>
+	</tr>
+<% end %>
+</table>

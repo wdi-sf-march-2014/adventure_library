@@ -1,0 +1,21 @@
+<% content_for :body_type do%>
+pagesnew<% end %>
+
+<div class="pagesnewdiv">
+	<h1><%= @adventure.title %> </h1>
+		<h4>Written By: <%= @adventure.author %> </h4>
+<br />
+	 	<% @adventure.pages.each do |pages| %>
+	 		<p>Page Name: <b><%= pages.name %></b></p>
+	 		<%= simple_format(linkify_page(pages)) %><br />
+	 	<% end %>
+</div>
+
+	<h4>Add A New Page:</h4>
+	<div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+	 <%= bootstrap_form_for [@adventure, @adventure.pages.build] do |f| %>
+	   <%= f.text_field :name, placeholder: "Name" %>
+	   <%= f.text_area :text, placeholder: "Text" %>
+	   <%= f.submit %>
+	 <% end %>
+	</div>

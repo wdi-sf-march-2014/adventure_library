@@ -1,0 +1,32 @@
+<% content_for :body_type do%>
+libraryindex<% end %>
+
+<h1>Welcome to my awesome Adventure Library!</h1>
+ <% @library.each do |library| %>
+   <%= link_to library.url, library_path(library.id) %><br>
+ <% end %>
+<br />
+
+<!-- adventure_path(library.id) -->
+
+  <h2>Add a new library:</h2>
+ <%= form_for @library_new do |f| %>
+   <%= f.label :url %>
+   <%= f.text_field :url, placeholder: "Enter url" %>
+   <%= f.submit "Add the library" %>
+ <% end %>
+
+ <h2>All My Adventures:</h2>
+ <% @adventure.each do |adventure| %>
+   <li>
+     <%= link_to adventure.title, adventure_path(adventure)%>
+     Written By:
+     <%= adventure.author%>
+   </li>
+ <% end %>
+
+<br />
+
+
+
+

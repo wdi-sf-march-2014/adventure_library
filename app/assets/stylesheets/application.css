@@ -8,6 +8,79 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
+ *= require bootstrap.min.css
  *= require_tree .
+ *= require rails_bootstrap_forms
+ *= require_self
  */
+
+.adventureindex{
+	text-align: center;
+	background-image: url("http://31.media.tumblr.com/3ef44f5040845e46970bc54cf4fecaf5/tumblr_mqz5pbSjwA1srfzzio1_1280.jpg");
+}
+
+.adventurenew{
+	background-image: url("http://www.britishquadrathlon.org.uk/wp-content/uploads/2013/11/tumblr_mgq9z2T7v41r21bv9o1_1280.png");
+	background-size: cover;
+}
+
+.adventureshow{
+	text-align: center;
+	background-image: url("http://www.donteverlookback.com/wp-content/uploads/2013/07/lifeisanadventure.jpg");
+	background-size: cover;
+}
+
+.pagesshow{
+	text-align: center;
+	background-image: url("http://cache4.asset-cache.net/gc/182656049-double-arrow-road-sign-at-fork-denver-gettyimages.jpg?v=1&c=IWSAsset&k=2&d=%2BvuCeHVb4mxzQjdWVAKJ%2Fm2OT6v%2BKL0hjYHO76EkKs4%3D");
+	background-size: cover;
+}
+
+.pagesnew{
+	text-align: center;
+	background-image: url("http://www.adventured.com/wp-content/uploads/cliff_dive.jpg");
+	background-size: cover;
+}
+
+.pageshowdiv{
+	margin-top: 100px;
+}
+
+.libraryindex{
+	text-align: center;
+	background-image: url("http://3.bp.blogspot.com/-XmjPM3DMfHQ/T3ZfTkDa7yI/AAAAAAAAJtI/OxcKy1jZJ0w/s1600/6.jpg");
+	background-size: cover;
+}
+
+.nav-pills {
+    margin-left: 70%;
+}
+
+.advshow{
+	margin-top: 100px;
+}
+
+.advnew{
+	margin-top: 100px;
+}
+
+table {
+	border-spacing: 0.5rem;
+	text-align: center;
+}
+
+td{
+ 	border: 1px solid #999;
+  	padding: 0.5rem;	
+}
+
+th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+a{text-decoration: underline; color: blue;}
+a:visited {text-decoration: none}
+a:active {text-decoration: none}
+a:hover {text-decoration: underline; color: red;}

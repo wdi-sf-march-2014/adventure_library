@@ -1,0 +1,21 @@
+<% content_for :body_type do%>
+adventurenew<% end %>
+
+<div class="advnew">
+	<div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+		<%= bootstrap_form_for(@adventure) do |f| %>
+			<%= f.text_field :title, placeholder: "Adventure Title" %>
+
+			<%= f.text_field :author, placeholder: "Written by" %>
+
+			<%= f.fields_for :pages, @adventure.pages.build do |p| %>
+
+				<%= p.hidden_field :name, value: "start" %>		
+
+				<%= p.text_area :text, placeholder: "Your Text Here" %>
+
+			<% end %>
+			<%= f.submit "Create Adventure", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
