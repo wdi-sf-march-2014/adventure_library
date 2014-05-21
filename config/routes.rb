@@ -1,7 +1,20 @@
 AdventureLibrary::Application.routes.draw do
+  
+  #Sidekiq web interface
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
+  root to: 'adventures#index'
+
   resources :adventures do
     resources :pages
   end
+
+  resources :libraries do 
+    resources :adventures
+  end
+
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -56,4 +69,4 @@ AdventureLibrary::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+

@@ -1,0 +1,26 @@
+<h1>Welcome to daveyK's adventure library</h1>
+
+	<p>Locally made adventures:</p>
+	<% @adventures.each do |adventure| %>
+		<% if adventure.library_id == nil %>
+			<li> <%= link_to adventure.title, adventure_path(adventure) %> </li>
+		<% end %>
+	<% end %>
+
+</br>
+<%#= link_to "Create New Adventure", new_adventure_path %>
+
+<p>Remote adventures:</p>
+	<% @adventures.each do |adventure| %>
+		<% if adventure.library_id != nil %>
+			<li> <%= link_to adventure.title, adventure_path(adventure) %> </li>
+		<% end %>
+	<% end %>
+
+
+<p> Add your library for scraping:</p>
+
+<%= form_for Library.new do |f| %>
+	<%= f.text_field :url, :placeholder => "example.com" %>
+	<%= f.submit "Submit" %>
+<% end %>
