@@ -1,0 +1,15 @@
+<h1> Ze show page </h1>
+<p> Title:  <%= @adventure.title %> </p>
+<p> Author: <%= @adventure.author %> </p>
+<% @adventure.pages.each do |page| %>
+  <a href="<%= page.name %>"><%= page.name %></a>
+  <a href="<%= page.text %>"><%= page.text %></a>
+<% end %>
+
+<%= link_to "Edit", edit_adventure_path(@adventure) %>
+<%= link_to "Delete", adventure_path(@adventure), method: 'delete' %>
+
+<%= sanitize linkify_page @page %></br>
+<%= link_to "Add page", new_adventure_page_path(@adventure) %>
+
+

@@ -1,0 +1,6 @@
+<h1>your libraries</h1>
+<ul>
+  <% @libraries.each do |library| %>
+  <li><a href = "<%= library.url %>" ><%=library.url%></a><br></br></li>
+  <% end %>
+</ul>
