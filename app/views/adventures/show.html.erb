@@ -1,0 +1,9 @@
+<!-- show.html.erb -->
+
+<h1> Your Adventure Here </h1>
+<p>by: <%= @adventure.author %> <br />
+
+  <%= link_to 'Edit', edit_adventure_path(@adventure) %>br />
+  <% link_to 'Delete',  adventure_path(@adventure),  method: 'delete', data: { confirm: "Are you sure?"} %> <br />
+
+  <%= link_to "All Adventures", root_path %>

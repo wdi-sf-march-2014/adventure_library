@@ -1,0 +1,9 @@
+<!-- #index.html.erb -->
+
+<h1> Your Libraries index </h1>
+
+<%= @libraries.each do |f|%>
+  <li>
+    <%= f.url %>
+  </li>
+  <% end %>

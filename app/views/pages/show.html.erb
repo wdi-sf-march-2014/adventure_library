@@ -1,0 +1,11 @@
+<!-- show.html.erb -->
+<!--  taking from show meth on page contr -->
+
+<h2> Your Adventures </h2>
+
+  <p> Title- <%= @adventure['title']%></p>
+  <p>Author- <%= @adventure['author']%></p>
+<%= simple_format linkify_page(@page) %>
+
+<%= link_to "Return to all your Adventures", adventures_path %>
+

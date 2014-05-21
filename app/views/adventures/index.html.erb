@@ -1,0 +1,24 @@
+<!-- #index.html.erb -->
+<h1>All your Adventures!</h1>
+<%= link_to 'Create an Adnventure', new_adventure_path %> 
+
+<h4> Other Peoples Adventures </h4>
+<% @adventures.each do |adventure| %>
+
+<%= link_to adventure.title, adventure_path(adventure) %> by: <%= adventure.author %> <br />
+<% end %>
+
+<h5> Advnetures wil no start page: </h5>
+<% @adventures.each do |adventure| %>
+
+<%= link_to adventure.title, adventure_path(adventure) %> by: <%= adventure.author %> <br />
+<% end %>
+
+<h4>Add your Library</h4>
+
+  <%= form_for @library do |f| %>
+  <%= f.label :url %>
+  <%= f.text_field :url, :autofocus => true, placeholder: 'Enter Url' %>
+  <%= f.submit 'Submit' %>
+  <% end %>
+

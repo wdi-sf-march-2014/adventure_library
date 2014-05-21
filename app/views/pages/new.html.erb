@@ -1,0 +1,19 @@
+<h1> Add Pages to your Adventure</h1>
+
+<%= form_for ([@adventure, @page]) do |f| %>
+  <%= f.text_field :name, placeholder: "Name the next step in your adventure!" %>  
+    <%= f.text_area :text, placeholder: "What happens next" %>
+  <%= f.submit 'Keep adding to your Adventure' %>
+<% end %>
+
+<p>Finish your Adventure<p>
+
+<%= form_for ([@adventure, @page]) do |f| %>
+<%= f.hidden_field :name, value: 'start'  %>
+<%= f.text_area :text, placeholder: "How does  your Adventure End?" %>
+<%= f.submit 'Adventures End' %>
+
+<% end %>
+
+
+<!-- #end redirect tpo adv index -->
