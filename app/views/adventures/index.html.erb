@@ -1,0 +1,16 @@
+<h1> Choose Yo' Adventure! </h1><br />
+
+ <a href= '/adventures/new'>
+  <button type="submit" class="btn btn-info">Create an Adventure</button>
+</a>
+ <%#= link_to 'Create an Adventure', new_adventure_path %><br /><br /><br />
+
+<% @adventures.each do |adventure| %>
+  <%= link_to adventure.title, adventure_path(adventure) %> by: <%= adventure.author %><br /><br />
+<% end %><br /><br />
+
+<h4>Add your Library</h4><br />
+ <%= form_for 'add URL' do |f| %>
+  <%= f.text_field :url, placeholder: 'Enter Url' %><br /><br />
+  <button type="submit" class="btn btn-success">Submit</button>
+ <% end %>
