@@ -39,7 +39,6 @@ group :test, :development do
   gem 'pry-rails'
   gem 'pry'
   gem 'pry-byebug'
-  gem 'dotenv-rails'
 end
 
 group :production do
