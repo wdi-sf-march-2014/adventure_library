@@ -1,12 +1,16 @@
-This was a mini-project assigned over a weekend for my WDI web developement immersive course. <br>
+<h3>This was a mini-project assigned over a weekend for my WDI web developement immersive course. <br>
 I used redis, sidekiq, typhoeus and rendered JSON as part of completing this assignment. <br>
 The basic idea is that each student completing this assignment acts as a node to render JSON as well as able to render
 HTML where a user can make a choose-your-own-adventure story. Each story that is created on each application then is able
-to be scraped by all other nodes in the class. See below for original instructions given by WDI staff:
+to be scraped by all other nodes in the class. See below for original instructions given by WDI staff:</h4>
 
 ============================================================================================================
 ============================================================================================================
 ============================================================================================================
+============================================================================================================
+============================================================================================================
+============================================================================================================
+
 
 
 
