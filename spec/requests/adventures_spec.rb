@@ -1,7 +1,8 @@
 require 'spec_helper'
 
+
 describe '/adventures' do
-  before(:each) do 
+  before(:each) do
     @local_adventure = Adventure.create!(:title => "test",
                                         :author => "Test author")
     @local_adventure.pages.create!(:name => "start", :text => "cool story bro")
@@ -45,17 +46,17 @@ describe '/adventures' do
     end
   end
 
-  # describe 'GET with HTML' do
-  #   before do
-  #     get '/adventures'
-  #   end
-  #   it 'returns all adventures'
-  #   it 'returns adventures made on another server'    
-  # end
+  describe 'GET with HTML' do
+    before do
+      get '/adventures'
+    end
+    it 'returns all adventures'
+    it 'returns adventures made on another server'    
+  end
 
-  # describe 'POST' do
-  #   it 'adds a locally made adventure'
-  # end
+   describe 'POST' do
+     it 'adds a locally made adventure'
+   end
 end
 
 describe '/libraries' do

@@ -1,6 +1,20 @@
-# Adventure Library
+<h4>This was a mini-project assigned over a weekend for my WDI web developement immersive course. <br><br>
+I used redis, sidekiq, typhoeus and rendered JSON as part of completing this assignment. <br><br>
+The basic idea is that each student completing this assignment acts as a node to render JSON as well as able to render
+HTML where a user can make a choose-your-own-adventure story. Each story that is created on each application then is able
+to be scraped by all other nodes in the class. See below for original instructions given by WDI staff:</h4>
 
-## WDI mini-project for 2/13/2014
+============================================================================================================
+============================================================================================================
+============================================================================================================
+============================================================================================================
+============================================================================================================
+============================================================================================================
+
+
+
+
+# Adventure Library
 
 This is your start for making your node in our distributed text adventure library.
 

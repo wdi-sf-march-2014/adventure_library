@@ -1,0 +1,12 @@
+<%= form_for @adventure do |f| %>
+  <%= f.label :author %>
+  <%= f.text_field :author, placeholder: "Your name" %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Title of this adventure" %>
+  <%= f.fields_for :pages, @adventure.pages.build do |b| %>
+    <%= b.hidden_field :name, :value => "start" %>
+    <%= b.label :text %>
+    <%= b.text_area :text, placeholder: "Enter the content of your starting page" %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

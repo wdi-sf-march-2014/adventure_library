@@ -1,0 +1,10 @@
+<%= form_for @adventure do |f| %>
+  <%= f.label :author %>
+  <%= f.text_field :author %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.fields_for :pages, @adventure.pages.build do |b| %>
+    <%= b.hidden_field(name: "start") %>
+  <% end %>
+  <%= f.submit %>
+<% end %>

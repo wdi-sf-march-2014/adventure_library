@@ -1,0 +1,7 @@
+<h1> Edit this page </h1>
+
+<%= form_for ([@adventure, @page]) do |f| %>
+  <%= f.hidden_field(name: "start") %>
+  <%= f.label :text %>
+  <%= f.text_area :text, placedholder: "Enter the content of your starting page" %>
+<%= f.submit %>
